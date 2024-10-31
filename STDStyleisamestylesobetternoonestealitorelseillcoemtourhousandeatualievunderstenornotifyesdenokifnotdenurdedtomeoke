@@ -1510,7 +1510,7 @@ Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
         
         -- Add a short delay before adjusting the speed
         wait(0.1)
-        Anim:AdjustSpeed(5.6)  -- Attempt to change speed after loading
+        Anim:AdjustSpeed(4.5)  -- Attempt to change speed after loading
         Anim:Destroy()
     end
 end)
