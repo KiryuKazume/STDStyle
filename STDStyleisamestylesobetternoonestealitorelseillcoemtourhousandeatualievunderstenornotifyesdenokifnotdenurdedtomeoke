@@ -1665,16 +1665,12 @@ Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
         Main.HeatMove.TextLabel.Text = Rep.Moves.H_HeadPressUp.MoveName.Value
         local Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_FastFootworkRight.Anim)
         Anim.Priority = Enum.AnimationPriority.Action4
-        
-        -- Start the animation at the 2-second mark
-        Anim.TimePosition = 2  -- Start from 2 seconds
+
+        -- Jump directly to 2 seconds in to start with the front kick part
+        Anim.TimePosition = 2  -- Starts animation at the best part
         Anim:Play()
-        
-        -- Optional: Stop the animation after a short duration, if needed
-        delay(1, function()  -- Adjust the delay for your needs
-            Anim:Stop()
-            Anim:Destroy()
-        end)
+
+        -- No need to stop or destroy; it'll just continue from the kick
     end
 end)
 
