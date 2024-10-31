@@ -1836,7 +1836,7 @@ sendNotification("KIWAMI MEANS EXTREME!", color)
 
 sendNotification("Press X to swap counter step and parry on Self-Taught Dragon", color)
 
-sendNotification("Press - or hold L2 to use Force Shield", color)
+sendNotification("Hold G or L2 to use Force Shield", color)
 
 sendNotification("WARNING : THIS SCRIPT CONTAINS OTHER PEOPLES SCRIPT PARTS SO FORGIVE ME", color)
 
@@ -1885,7 +1885,8 @@ game.ReplicatedStorage.Moves.CounterHook.AniSpeed.Value = "3.3"
 game.ReplicatedStorage.Moves.BRCounter2.AniSpeed.Value = "3.4"
 game.ReplicatedStorage.Moves.RushTaunt.Anim.AnimationId = "rbxassetid://9313499003"
 game.ReplicatedStorage.Moves.ShuckyStun.Anim.AnimationId = "rbxassetid://12051777670"
-game.ReplicatedStorage.Moves.GoonTaunt.Anim.AnimationId = "rbxassetid://9313529138"
+game.ReplicatedStorage.Moves.GoonTaunt.Anim.AnimationId = "rbxassetid://7770642284"
+game.ReplicatedStorage.Styles.Rush.Idle.AnimationId = "rbxassetid://3188210696"
 game.ReplicatedStorage.Moves.BStrike5.Anim.AnimationId = "rbxassetid://7603768348"
 game.ReplicatedStorage.Moves.B2Strike2.Anim.AnimationId = "rbxassetid://11808830651"
 game.ReplicatedStorage.Moves.B2Strike3.Anim.AnimationId = "rbxassetid://13785070193"
