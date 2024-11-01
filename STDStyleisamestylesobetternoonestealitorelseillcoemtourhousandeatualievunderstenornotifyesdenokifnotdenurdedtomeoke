@@ -1425,24 +1425,24 @@ v = Instance.new("StringValue", game.ReplicatedStorage.Moves["龍GTigerDrop"])
 end
 v.Value = '0.1' 
 v.Name = "ForceSF"
-if game.ReplicatedStorage.Moves["TigerDrop"]:FindFirstChild("Anim") then
-v = game.ReplicatedStorage.Moves["TigerDrop"]["Anim"]
+if game.ReplicatedStorage.Moves["龍TigerDrop"]:FindFirstChild("Anim") then
+v = game.ReplicatedStorage.Moves["龍TigerDrop"]["Anim"]
 else
-v = Instance.new("Animation", game.ReplicatedStorage.Moves["TigerDrop"])
+v = Instance.new("Animation", game.ReplicatedStorage.Moves["龍TigerDrop"])
 end
-v.AnimationId = "rbxassetid://12338275115" 
+v.AnimationId = "rbxassetid://7546691847" 
 v.Name = "Anim"
-if game.ReplicatedStorage.Moves["TigerDrop"]:FindFirstChild("HitDur") then
-v = game.ReplicatedStorage.Moves["TigerDrop"]["HitDur"]
+if game.ReplicatedStorage.Moves["龍TigerDrop"]:FindFirstChild("HitDur") then
+v = game.ReplicatedStorage.Moves["龍TigerDrop"]["HitDur"]
 else
-v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["TigerDrop"])
+v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["龍TigerDrop"])
 end
 v.Value = 0.3 
 v.Name = "HitDur"
-if game.ReplicatedStorage.Moves["TigerDrop"]:FindFirstChild("AniSpeed") then
-v = game.ReplicatedStorage.Moves["TigerDrop"]["AniSpeed"]
+if game.ReplicatedStorage.Moves["龍TigerDrop"]:FindFirstChild("AniSpeed") then
+v = game.ReplicatedStorage.Moves["龍TigerDrop"]["AniSpeed"]
 else
-v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["TigerDrop"])
+v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["龍TigerDrop"])
 end
 v.Value = 1 
 v.Name = "AniSpeed"
@@ -1765,6 +1765,22 @@ if moves:FindFirstChild("ParkerDrop") then
             n.Name = "HSize"
             n.Value = 2
             n.Parent = moves:FindFirstChild("BRCounter1")
+        end
+    end
+
+if moves:FindFirstChild("龍TigerDrop") then
+        moves:FindFirstChild("TigerDrop").Name = "FakeTigerDrop"
+        moves:FindFirstChild("龍TigerDrop").Name = "TigerDrop"
+
+        local ignore = Instance.new("Folder")
+        ignore.Name = "IgnoreDmg"
+        ignore.Parent = moves:FindFirstChild("TigerDrop")
+
+        if not moves:FindFirstChild("T_FinishingHold4"):FindFirstChild("HSize") then
+            local n = Instance.new("NumberValue")
+            n.Name = "HSize"
+            n.Value = 2
+            n.Parent = moves:FindFirstChild("TigerDrop")
         end
     end
 
