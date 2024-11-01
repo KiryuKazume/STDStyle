@@ -2964,7 +2964,7 @@ local function modifyStyles()
     Parker.VisualName.Value = "DE-Tenk"
     Parker.H_FullHeat.Value = "H_SpinCounterBack"
     Parker.Rush1.Value = "RPunch1"
-    Parker.Rush2.Value = "Rpunch2"
+    Parker.Rush2.Value = "RPunch2"
     Parker.Rush3.Value = "RPunch3"
     Parker.Rush4.Value = "RPunch2"
     Parker.Strike2.Value = "GStrike1"
