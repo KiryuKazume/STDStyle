@@ -1979,6 +1979,7 @@ Main.HeatMove.TextLabel.Font = "Merriweather"
 Main.HeatMove.stale.Font = "Merriweather"
 Main.Health.Label.Font = "Merriweather"
 Main.StyleBar.amount.Font = "Merriweather"
+Main.Heat.ClimaxFill.ImageColor3 = Color3.fromRGB(40, 150, 250)
 Main.MoneyBar.amount.Font = "Merriweather"
 Main.XP.Label.Font = "Merriweather"
 Main.GUY.GUY.Image = "rbxthumb://type=Asset&id=5841616723&w=420&h=420"
