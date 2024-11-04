@@ -1801,18 +1801,18 @@ if moves:FindFirstChild("T_BearHug") then
     end
 
 if moves:FindFirstChild("ShuckyDrop") then
-        moves:FindFirstChild("BodyCollide").Name = "FakeBodyCollide"
-        moves:FindFirstChild("ShuckyDrop").Name = "BodyCollide"
+        moves:FindFirstChild("BStrike1").Name = "FakeBStrike1"
+        moves:FindFirstChild("ShuckyDrop").Name = "BStrike1"
 
         local ignore = Instance.new("Folder")
         ignore.Name = "IgnoreDmg"
-        ignore.Parent = moves:FindFirstChild("BodyCollide")
+        ignore.Parent = moves:FindFirstChild("BStrike1")
 
-        if not moves:FindFirstChild("BodyCollide"):FindFirstChild("HSize") then
+        if not moves:FindFirstChild("BStrike1"):FindFirstChild("HSize") then
             local n = Instance.new("NumberValue")
             n.Name = "HSize"
             n.Value = 1
-            n.Parent = moves:FindFirstChild("BodyCollide")
+            n.Parent = moves:FindFirstChild("BStrike1")
         end
     end
 
