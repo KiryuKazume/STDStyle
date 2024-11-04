@@ -1736,31 +1736,31 @@ spawn(function()
 end)
 game:GetService("RunService").RenderStepped:Connect(change_color)
 
-if moves:FindFirstChild("龍GTigerDrop") then
+moves:FindFirstChild("龍GTigerDrop") then
         moves:FindFirstChild("BRCounter2").Name = "FakeCounter2"
         moves:FindFirstChild("龍GTigerDrop").Name = "BRCounter2"
         end
     end
 
-if moves:FindFirstChild("ParkerDrop") then
+moves:FindFirstChild("ParkerDrop") then
         moves:FindFirstChild("BRCounter1").Name = "FakeCounter1"
         moves:FindFirstChild("ParkerDrop").Name = "BRCounter1"
         end
     end
 
-if moves:FindFirstChild("龍TigerDrop") then
+moves:FindFirstChild("龍TigerDrop") then
         moves:FindFirstChild("TigerDrop").Name = "FakeTigerDrop"
         moves:FindFirstChild("龍TigerDrop").Name = "TigerDrop"
         end
     end
 
-if moves:FindFirstChild("T_BearHug") then
+moves:FindFirstChild("T_BearHug") then
         moves:FindFirstChild("T_FinishingHold4").Name = "FakeFinishingHold4"
         moves:FindFirstChild("T_BearHug").Name = "T_FinishingHold4"
         end
     end
 
-if moves:FindFirstChild("ShuckyDrop") then
+moves:FindFirstChild("ShuckyDrop") then
         moves:FindFirstChild("龍Strike1").Name = "FakeBStrike1"
         moves:FindFirstChild("ShuckyDrop").Name = "龍Strike1"
         end
