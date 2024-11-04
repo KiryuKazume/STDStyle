@@ -1801,18 +1801,18 @@ if moves:FindFirstChild("T_BearHug") then
     end
 
 if moves:FindFirstChild("ShuckyDrop") then
-        moves:FindFirstChild("BStrike1").Name = "FakeBStrike1"
-        moves:FindFirstChild("ShuckyDrop").Name = "BStrike1"
+        moves:FindFirstChild("龍Strike1").Name = "FakeBStrike1"
+        moves:FindFirstChild("ShuckyDrop").Name = "龍Strike1"
 
         local ignore = Instance.new("Folder")
         ignore.Name = "IgnoreDmg"
-        ignore.Parent = moves:FindFirstChild("BStrike1")
+        ignore.Parent = moves:FindFirstChild("龍Strike1")
 
-        if not moves:FindFirstChild("BStrike1"):FindFirstChild("HSize") then
+        if not moves:FindFirstChild("龍Strike1"):FindFirstChild("HSize") then
             local n = Instance.new("NumberValue")
             n.Name = "HSize"
             n.Value = 1
-            n.Parent = moves:FindFirstChild("BStrike1")
+            n.Parent = moves:FindFirstChild("龍Strike1")
         end
     end
 
@@ -2932,7 +2932,6 @@ local function modifyStyles()
     Parker.Color.Value = Color3.new(0,0.50,1)
     Parker.VisualName.Value = "Self-Taught Dragon"
     Parker.H_FullHeat.Value = "H_GUltimateEssence"
-    Parker.Strike1.Value = "BStrike1"
     Parker.GrabStrike.Value = "T_GuruParry"
     Parker.StanceStrike.Value = "CounterHook"
     Parker.BlockStrike.Value = "TigerDrop"
