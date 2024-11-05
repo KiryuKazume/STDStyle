@@ -1800,22 +1800,6 @@ if moves:FindFirstChild("T_BearHug") then
         end
     end
 
-if moves:FindFirstChild("ShuckyDrop") then
-        moves:FindFirstChild("龍Strike1").Name = "FakeBStrike1"
-        moves:FindFirstChild("ShuckyDrop").Name = "龍Strike1"
-
-        local ignore = Instance.new("Folder")
-        ignore.Name = "IgnoreDmg"
-        ignore.Parent = moves:FindFirstChild("龍Strike1")
-
-        if not moves:FindFirstChild("龍Strike1"):FindFirstChild("HSize") then
-            local n = Instance.new("NumberValue")
-            n.Name = "HSize"
-            n.Value = 1
-            n.Parent = moves:FindFirstChild("龍Strike1")
-        end
-    end
-
 function playticksound()
 local sfx = Instance.new("Sound", workspace)
 sfx.SoundId = "rbxassetid://12222183"
@@ -2932,6 +2916,7 @@ local function modifyStyles()
     Parker.VisualName.Value = "Self-Taught Dragon"
     Parker.H_FullHeat.Value = "H_GUltimateEssence"
     Parker.GrabStrike.Value = "T_GuruParry"
+    Parker.Strike1.Value = "ShuckyDrop"
     Parker.StanceStrike.Value = "CounterHook"
     Parker.BlockStrike.Value = "TigerDrop"
     Parker.H_Fallen.Value = "H_FallenSupine"
