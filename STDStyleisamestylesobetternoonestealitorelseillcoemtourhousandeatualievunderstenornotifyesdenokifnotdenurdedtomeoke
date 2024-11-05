@@ -1515,6 +1515,7 @@ Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
         
         -- Slow down to normal speed for the "best" part
         Anim:AdjustSpeed(1)  -- Adjust to your preferred speed for the main part of the animation
+        Anim:Destroy()
     end
 end)
 
