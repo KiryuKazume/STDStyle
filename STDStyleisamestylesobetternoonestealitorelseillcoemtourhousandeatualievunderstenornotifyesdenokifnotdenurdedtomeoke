@@ -2988,7 +2988,7 @@ local function modifyStyles()
     Parker.BlockStrike.Value = "ShuckyStun"
     Parker.H_Running4.Value = "H_Brute"
     Parker.GrabStrike.Value = "T_龍GParry"
-    Parker.Throw.Value = "T_BeastToss"
+    Parker.Throw.Value = "T_龍GParry"
     Parker.StanceStrike.Value = "ParkerDrop"
     Parker.H_SuperEvading.Value = "H_FallenSlam"
     Parker.H_Distanced.Value = "H_TSpinCounterFront"
