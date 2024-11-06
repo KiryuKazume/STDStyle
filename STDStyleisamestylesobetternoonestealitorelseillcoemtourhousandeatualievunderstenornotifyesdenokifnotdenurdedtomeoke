@@ -3256,8 +3256,6 @@ end
 
 local player = game.Players.LocalPlayer
 local heat = player.Status.Heat
-
--- Function to update the ComboAt and Dmg values based on heat
 local function updateValues()
     if heat.Value == 100 then
         -- Change ComboAt and Dmg values for 龍Attack1 to 龍Attack4
@@ -3285,8 +3283,6 @@ local function updateValues()
         game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 120
     end
 end
-
--- Constantly check and update values
 while true do
     updateValues()  -- Call the function to update the values
     wait(1)  -- Check every second (you can adjust this interval)
