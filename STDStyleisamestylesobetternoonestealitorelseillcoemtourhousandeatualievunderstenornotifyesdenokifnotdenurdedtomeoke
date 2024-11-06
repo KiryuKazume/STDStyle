@@ -1509,8 +1509,8 @@ Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
         
         -- Play the animation at high speed to skip the initial part
         Anim:Play()
-        Anim:AdjustSpeed(7)  -- Fast-forward speed
-        wait(0.3)  -- Duration to fast-forward (adjust as needed)
+        Anim:AdjustSpeed(7.8)  -- Fast-forward speed
+        wait(0.2)  -- Duration to fast-forward (adjust as needed)
 
         -- Switch to normal playback speed for the main part
         Anim:AdjustSpeed(1)  -- Main speed
@@ -1541,7 +1541,7 @@ local Main = Player.PlayerGui.Interface.Battle.Main
 
 Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
     if Main.HeatMove.TextLabel.Text == "Essence of Fisticuffs" then
-        Main.HeatMove.TextLabel.Text = Rep.Moves.H_Fisticuffs.MoveName.Value
+        Main.HeatMove.TextLabel.Text = Rep.Moves.H_UltimateEssence.MoveName.Value
         local Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_UltimateEssence.Anim)
         Anim.Priority = Enum.AnimationPriority.Action4
         Anim:AdjustSpeed(0.9)
@@ -1557,7 +1557,7 @@ local Main = Player.PlayerGui.Interface.Battle.Main
 
 Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
     if Main.HeatMove.TextLabel.Text == "Essence of Piledriver" then
-        Main.HeatMove.TextLabel.Text = Rep.Moves.H_Piledriver.MoveName.Value
+        Main.HeatMove.TextLabel.Text = Rep.Moves.H_UltimateEssence.MoveName.Value
         local Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_UltimateEssence.Anim)
         Anim.Priority = Enum.AnimationPriority.Action4
         Anim:Play()
@@ -1576,7 +1576,7 @@ local Main = Player.PlayerGui.Interface.Battle.Main
 
 Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
     if Main.HeatMove.TextLabel.Text == "Guru Spin Counter [Back]" then
-        Main.HeatMove.TextLabel.Text = Rep.Moves.H_SpinCounterBack.MoveName.Value
+        Main.HeatMove.TextLabel.Text = Rep.Moves.H_UltimateEssence.MoveName.Value
         local Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_UltimateEssence.Anim)
         Anim.Priority = Enum.AnimationPriority.Action4
         Anim:Play()
@@ -1595,7 +1595,7 @@ local Main = Player.PlayerGui.Interface.Battle.Main
 
 Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
     if Main.HeatMove.TextLabel.Text == "Essence of Solid Counter" then
-        Main.HeatMove.TextLabel.Text = Rep.Moves.H_SolidCounter.MoveName.Value
+        Main.HeatMove.TextLabel.Text = Rep.Moves.H_Rolling.MoveName.Value
         local Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_Rolling.Anim)
         Anim.Priority = Enum.AnimationPriority.Action4
         Anim:AdjustSpeed(0.9)
