@@ -1509,7 +1509,7 @@ Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
         
         -- Play the animation at high speed to skip the initial part
         Anim:Play()
-        Anim:AdjustSpeed(7.8)  -- Fast-forward speed
+        Anim:AdjustSpeed(7.5)  -- Fast-forward speed
         wait(0.2)  -- Duration to fast-forward (adjust as needed)
 
         -- Switch to normal playback speed for the main part
