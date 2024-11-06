@@ -1865,23 +1865,25 @@ interf.Client.Disabled = true
 task.wait(0.1)
 interf.Client.Disabled = false
 
+-- Update values for RStrike8
 local current = game.ReplicatedStorage.Moves["RStrike8"]
 current.Anim.AnimationId = "rbxassetid://11699263554"
 changeValueStrict(current, "HSize", 0.75, "NumberValue")
-    changeValueStrict(current, "HitDur", 0.35, "NumberValue")
-    changeValueStrict(current, "MoveDuration", 0.3, "NumberValue")
-    changeValueStrict(current, "MoveFoward", 6, "NumberValue")
-    changeValueStrict(current, "ForceSF", 0.05, "NumberValue")
-    changeValueStrict(current, "HitboxLocations", '[["LeftHand",2,[0,0,0]],["LeftLowerArm",1.5,[0,0,0]],["LeftUpperArm",1,[0,0,0]]]', "StringValue")
+changeValueStrict(current, "HitDur", 0.35, "NumberValue")
+changeValueStrict(current, "MoveDuration", 0.3, "NumberValue")
+changeValueStrict(current, "MoveFoward", 6, "NumberValue")
+changeValueStrict(current, "ForceSF", 0.05, "NumberValue")
+changeValueStrict(current, "HitboxLocations", '[["LeftHand",2,[0,0,0]],["LeftLowerArm",1.5,[0,0,0]],["LeftUpperArm",1,[0,0,0]]]', "StringValue")
+
+-- Update values for RStrike9
 local current2 = game.ReplicatedStorage.Moves["RStrike9"]
-current.Anim.AnimationId = "rbxassetid://11699262955"
-changeValueStrict(current, "HSize", 0.75, "NumberValue")
-    changeValueStrict(current, "HitDur", 0.35, "NumberValue")
-    changeValueStrict(current, "MoveDuration", 0.3, "NumberValue")
-    changeValueStrict(current, "MoveFoward", 6, "NumberValue")
-    changeValueStrict(current, "ForceSF", 0.05, "NumberValue")
-    changeValueStrict(current, "HitboxLocations", '[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]', "StringValue")
-end
+current2.Anim.AnimationId = "rbxassetid://11699262955"
+changeValueStrict(current2, "HSize", 0.75, "NumberValue")
+changeValueStrict(current2, "HitDur", 0.35, "NumberValue")
+changeValueStrict(current2, "MoveDuration", 0.3, "NumberValue")
+changeValueStrict(current2, "MoveFoward", 6, "NumberValue")
+changeValueStrict(current2, "ForceSF", 0.05, "NumberValue")
+changeValueStrict(current2, "HitboxLocations", '[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]', "StringValue")
 
 local animationId = "rbxassetid://10928237540"
 local animationSpeed = 3 -- Change this value to set the desired speed
