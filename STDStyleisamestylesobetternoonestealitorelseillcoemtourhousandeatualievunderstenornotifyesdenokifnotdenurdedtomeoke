@@ -1506,17 +1506,15 @@ Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
         Main.HeatMove.TextLabel.Text = Rep.Moves.H_Whirl.MoveName.Value
         local Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_FastFootworkRight.Anim)
         Anim.Priority = Enum.AnimationPriority.Action4
-
-        -- Small delay before starting to avoid sync issues
-        wait(0.1)
         
-        -- Start the animation and fast-forward through the boring part
+        -- Play the animation at high speed to skip the initial part
         Anim:Play()
-        Anim:AdjustSpeed(8)  -- Fast-forward speed
-        wait(0.3)  -- Adjust this to control how much of the early part you skip
+        Anim:AdjustSpeed(7)  -- Fast-forward speed
+        wait(0.3)  -- Duration to fast-forward (adjust as needed)
 
-        -- Set to main playback speed for the best part
-        Anim:AdjustSpeed(0.6)  -- Adjust to your preferred playback speed
+        -- Switch to normal playback speed for the main part
+        Anim:AdjustSpeed(1)  -- Main speed
+        Anim:Destory()
     end
 end)
 
