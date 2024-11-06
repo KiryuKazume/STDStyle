@@ -52,8 +52,8 @@ end
  
 local alreadyRunning = game.ReplicatedStorage:FindFirstChild("DragonStyle")
 if alreadyRunning then
-	sendNotification("Dragon Style is already loaded")
-	return
+    sendNotification("Dragon Style is already loaded")
+    return
 end
                                               
 if game.ReplicatedStorage.Styles:FindFirstChild("Brawler") then
