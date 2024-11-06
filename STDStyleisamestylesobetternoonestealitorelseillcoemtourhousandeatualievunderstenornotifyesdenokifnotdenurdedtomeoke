@@ -1814,40 +1814,6 @@ local function sendNotification(text, color, sound)
     notifyevent:Fire(text, sound or nil)
 end
 
-local player = game.Players.LocalPlayer
-local heat = player.Status.Heat
-local function updateValues()
-    if heat.Value == 100 then
-        -- Change ComboAt and Dmg values for 龍Attack1 to 龍Attack4
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
-
-        -- Change ComboAt and Dmg values for BAttack1 and BAttack2
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 750
-        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 750
-    elseif heat.Value < 100 then
-        -- Reset ComboAt and Dmg values to their original state when heat is below 100
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
-
-        -- Reset ComboAt and Dmg values for BAttack1 and BAttack2
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.5
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.5
-        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 120
-        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 120
-    end
-end
-while true do
-    updateValues()  -- Call the function to update the values
-    wait(1)  -- Check every second (you can adjust this interval)
-end
-
 local uis = game:GetService("UserInputService")
 local rushstyle = game.ReplicatedStorage.Styles.Rush
 local brawlerstyle = game.ReplicatedStorage.Styles.Brawler
@@ -3293,8 +3259,11 @@ end
 
 -- Fourth script
 local function executeFourthScript()
+--Heat Awakening
 local player = game.Players.LocalPlayer
 local heat = player.Status.Heat
+
+-- Function to update the ComboAt and Dmg values based on heat
 local function updateValues()
     if heat.Value == 100 then
         -- Change ComboAt and Dmg values for 龍Attack1 to 龍Attack4
@@ -3316,12 +3285,14 @@ local function updateValues()
         game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
 
         -- Reset ComboAt and Dmg values for BAttack1 and BAttack2
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.4
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.4
+        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.5
+        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.5
         game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 120
         game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 120
     end
 end
+
+-- Constantly check and update values
 while true do
     updateValues()  -- Call the function to update the values
     wait(1)  -- Check every second (you can adjust this interval)
