@@ -1855,6 +1855,10 @@ game.ReplicatedStorage.Moves.BStrike5.Anim.AnimationId = "rbxassetid://760376834
 game.ReplicatedStorage.Moves.B2Strike2.Anim.AnimationId = "rbxassetid://11808830651"
 game.ReplicatedStorage.Moves.B2Strike3.Anim.AnimationId = "rbxassetid://13785070193"
 game.ReplicatedStorage.Moves.BStrike4.Anim.AnimationId = "rbxassetid://13785070193"
+game.ReplicatedStorage.Moves.RStrike9.HitboxLocations.Value = "[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]"
+game.ReplicatedStorage.Moves.RStrike9.Anim.AnimationId = "rbxassetid://11699262955"
+game.ReplicatedStorage.Moves.RStrike8.HitboxLocations.Value = "[["LeftHand",2,[0,0,0]],["LeftLowerArm",1.5,[0,0,0]],["LeftUpperArm",1,[0,0,0]]]"
+game.ReplicatedStorage.Moves.RStrike8.Anim.AnimationId = "rbxassetid://11699263554"
 game.ReplicatedStorage.Moves.BRCounter2.Dmg.Value = "5000"
 game.ReplicatedStorage.Moves.GStrike1.Dmg.Value = "80"
 game.ReplicatedStorage.Moves.H_FallenKick.MoveName.Value = "Essence of Football Kicking"
@@ -1978,13 +1982,13 @@ if dojoStyle then
         {name = "H_EvadedR", value = "H_FastFootworkRight"},
         {name = "H_Stunning", value = "H_Reversal"},
         {name = "H_Stunned", value = "H_FlyingKick"},
-        {name = "Rush5", value = "BAttack2"},
-        {name = "Rush6", value = "BAttack1"},
-        {name = "Rush7", value = "BAttack2"},
-        {name = "Rush8", value = "BAttack1"},
-        {name = "Strike6", value = "B2Strike1"},
-        {name = "Strike7", value = "B2Strike4"},
-        {name = "Strike8", value = "RStrike8"},
+        {name = "Rush5", value = "RStrike8"},
+        {name = "Rush6", value = "RStrike9"},
+        {name = "Rush7", value = "RStrike8"},
+        {name = "Rush8", value = "RStrike9"},
+        {name = "Strike6", value = "BStrike2"},
+        {name = "Strike7", value = "BStrike3"},
+        {name = "Strike8", value = "BStrike5"},
         {name = "Strike9", value = "龍Strike5"}
         
         
