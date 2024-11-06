@@ -2109,7 +2109,7 @@ local dojoStyle = game.ReplicatedStorage.Moves:FindFirstChild("RStrike8")
 if dojoStyle then
     -- Table holding the names and values you want to add or modify
     local valuesToAdd = {
-        {name = "ComboAt", value = "0.4"},
+        {name = "ComboAt", value = "0.5"},
 
 
     }
@@ -2131,7 +2131,7 @@ local dojoStyle = game.ReplicatedStorage.Moves:FindFirstChild("RStrike9")
 if dojoStyle then
     -- Table holding the names and values you want to add or modify
     local valuesToAdd = {
-        {name = "ComboAt", value = "0.4"},
+        {name = "ComboAt", value = "0.5"},
 
 
     }
@@ -3123,6 +3123,41 @@ local function modifyStyles()
     })
 end
 
+-- Heat Awakening BOOM
+local player = game.Players.LocalPlayer
+local heat = player.Status.Heat
+local function updateValues()
+    if heat.Value == 100 then
+        -- Change ComboAt and Dmg values for 龍Attack1 to 龍Attack4
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
+
+        -- Change ComboAt and Dmg values for BAttack1 and BAttack2
+        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.3
+        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.3
+        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 750
+        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 750
+    elseif heat.Value < 100 then
+        -- Reset ComboAt and Dmg values to their original state when heat is below 100
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
+
+        -- Reset ComboAt and Dmg values for BAttack1 and BAttack2
+        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.4
+        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.4
+        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 120
+        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 120
+    end
+end
+while true do
+    updateValues()  -- Call the function to update the values
+    wait(1)  -- Check every second (you can adjust this interval)
+end
+
 -- Infinite Heat Script
 local function FillHeat()
     local Event = ReplicatedStorage.Events.ME
@@ -3253,40 +3288,6 @@ while true do
 		end
 	end
 	task.wait()
-end
-
-local player = game.Players.LocalPlayer
-local heat = player.Status.Heat
-local function updateValues()
-    if heat.Value == 100 then
-        -- Change ComboAt and Dmg values for 龍Attack1 to 龍Attack4
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
-
-        -- Change ComboAt and Dmg values for BAttack1 and BAttack2
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.2
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.2
-        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 750
-        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 750
-    elseif heat.Value < 100 then
-        -- Reset ComboAt and Dmg values to their original state when heat is below 100
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
-
-        -- Reset ComboAt and Dmg values for BAttack1 and BAttack2
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.4
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.4
-        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 120
-        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 120
-    end
-end
-while true do
-    updateValues()  -- Call the function to update the values
-    wait(1)  -- Check every second (you can adjust this interval)
 end
     print("Executing third script...")
 end
