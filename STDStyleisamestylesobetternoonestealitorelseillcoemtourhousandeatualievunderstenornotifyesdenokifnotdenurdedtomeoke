@@ -2177,6 +2177,78 @@ UserInputService.InputChanged:Connect(function(input)
 		toggleInvun()  -- Call the function to toggle the shield based on the button state
 	end
 end)
+
+local plr = game.Players.LocalPlayer
+local Status = plr.Status
+local ReplicatedStorage = game.ReplicatedStorage
+
+-- Set Yell sound ID
+game.ReplicatedStorage.Sounds.Yell.Value = "rbxassetid://7959271972"
+
+-- Function to add forcefield
+local function add_forcefield(duration)
+    local invun = ReplicatedStorage.Invulnerable:Clone()
+    invun.Parent = Status
+    print("Forcefield added.")
+
+    if duration then
+        spawn(function()
+            task.wait(duration)
+            invun:Destroy()
+            print("Forcefield removed after duration.")
+        end)
+    end
+
+    return invun
+end
+
+-- Function to check if the spirit is active (health below 25%)
+local function IsSpiritActive()
+    return plr.Status.Health.Value <= plr.Status.MaxHealth.Value * 0.25
+end
+
+-- Function to play sound using the playsound function
+local function playsound(id)
+    local sfx = Instance.new("Sound", workspace)
+    sfx.SoundId = "rbxassetid://"..tostring(id)
+
+    game:GetService("SoundService"):PlayLocalSound(sfx)
+
+    spawn(function()
+        task.wait(sfx.TimeLength)
+        sfx:Destroy()
+    end)
+end
+
+-- The FillHeat function as provided
+local function FillHeat()
+    local Event = game:GetService("ReplicatedStorage").Events.ME
+    
+    for i = 1, 6 do
+        local A_1 = {
+            [1] = "heat", 
+            [2] = game:GetService("ReplicatedStorage").Moves.Taunt
+        }
+        Event:FireServer(A_1)
+        print("Heat action fired: " .. i)  -- Debugging line to confirm heat actions are firing
+    end
+end
+
+-- Health change function to activate the spirit and other effects
+local function HealthChanged()
+    -- Runs every time Health or MaxHealth changes
+    if IsSpiritActive() then
+        playsound(7959271972)  -- Play the Yell sound directly
+        FillHeat()  -- Calling the FillHeat function
+        task.wait(0.5)
+        add_forcefield(30)
+        task.wait(0.5)
+    end
+end
+
+-- Listen for health and max health changes
+plr.Status.MaxHealth.Changed:Connect(HealthChanged)
+plr.Status.Health.Changed:Connect(HealthChanged)
     print("Executing first script...")
 end
 
