@@ -1412,6 +1412,35 @@ end
 v.Value = 'MassiveSlap'
 v.Name = "HSound"
 
+-- Access the RStrike8 and RStrike9 moves
+local RStrike8 = game.ReplicatedStorage.Moves.RStrike8
+local RStrike9 = game.ReplicatedStorage.Moves.RStrike9
+
+-- Check if RStrike8 exists and modify properties
+if RStrike8 then
+    RStrike8.Anim.AnimationId = "rbxassetid://11699263554"
+    RStrike8.HSize.Value = 0.75
+    RStrike8.HitDur.Value = 0.35
+    RStrike8.MoveDuration.Value = 0.3
+    RStrike8.MoveForward.Value = 6
+    RStrike8.ForceSF.Value = 0.05
+    RStrike8.HitboxLocations.Value = '[["LeftHand",2,[0,0,0]],["LeftLowerArm",1.5,[0,0,0]],["LeftUpperArm",1,[0,0,0]]]'
+else
+    warn("RStrike8 not found in Moves folder.")
+end
+
+-- Check if RStrike9 exists and modify properties
+if RStrike9 then
+    RStrike9.Anim.AnimationId = "rbxassetid://11699262955"
+    RStrike9.HSize.Value = 0.75
+    RStrike9.HitDur.Value = 0.35
+    RStrike9.MoveDuration.Value = 0.3
+    RStrike9.MoveForward.Value = 6
+    RStrike9.ForceSF.Value = 0.05
+    RStrike9.HitboxLocations.Value = '[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]'
+else
+    warn("RStrike9 not found in Moves folder.")
+end
 
 local function playsound(id)
 local sfx = Instance.new("Sound", workspace)
@@ -3223,6 +3252,44 @@ while true do
 		end
 	end
 	task.wait()
+end
+
+local player = game.Players.LocalPlayer
+local heat = player.Status.Heat
+
+-- Function to update the ComboAt and Dmg values based on heat
+local function updateValues()
+    if heat.Value == 100 then
+        -- Change ComboAt and Dmg values for 龍Attack1 to 龍Attack4
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
+
+        -- Change ComboAt and Dmg values for BAttack1 and BAttack2
+        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.2
+        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.2
+        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 750
+        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 750
+    elseif heat.Value < 100 then
+        -- Reset ComboAt and Dmg values to their original state when heat is below 100
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
+        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.3
+
+        -- Reset ComboAt and Dmg values for BAttack1 and BAttack2
+        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.4
+        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.4
+        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 120
+        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 120
+    end
+end
+
+-- Constantly check and update values
+while true do
+    updateValues()  -- Call the function to update the values
+    wait(1)  -- Check every second (you can adjust this interval)
 end
     print("Executing third script...")
 end
