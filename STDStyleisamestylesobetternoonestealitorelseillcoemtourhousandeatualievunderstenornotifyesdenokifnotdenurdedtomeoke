@@ -3190,6 +3190,7 @@ local player = game.Players.LocalPlayer
 
     Instance.new("Folder", player.Status).Name = "AbilitiesRan"
     pgui.Notify:Fire("You now have all abilities for this session")
+
     print("Executing fourth script...")
 end
 
