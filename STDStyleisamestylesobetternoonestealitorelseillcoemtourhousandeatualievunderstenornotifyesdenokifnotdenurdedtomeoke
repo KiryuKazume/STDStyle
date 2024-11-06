@@ -612,48 +612,6 @@ else
 v = Instance.new("Folder", game.ReplicatedStorage.Moves.DragonTaunt)
 end
 v.Name = "Cancelable"
-if game.ReplicatedStorage.Moves["龍Attack1"]:FindFirstChild("ComboAt") then
-v = game.ReplicatedStorage.Moves["龍Attack1"]["ComboAt"]
-else
-v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["龍Attack1"])
-end
-v.Value = 0.2 
-v.Name = "ComboAt"
-if game.ReplicatedStorage.Moves["龍Attack2"]:FindFirstChild("ComboAt") then
-v = game.ReplicatedStorage.Moves["龍Attack2"]["ComboAt"]
-else
-v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["龍Attack2"])
-end
-v.Value = 0.2 
-v.Name = "ComboAt"
-if game.ReplicatedStorage.Moves["龍Attack3"]:FindFirstChild("ComboAt") then
-v = game.ReplicatedStorage.Moves["龍Attack3"]["ComboAt"]
-else
-v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["龍Attack3"])
-end
-v.Value = 0.2 
-v.Name = "ComboAt"
-if game.ReplicatedStorage.Moves["龍Attack4"]:FindFirstChild("ComboAt") then
-v = game.ReplicatedStorage.Moves["龍Attack4"]["ComboAt"]
-else
-v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["龍Attack4"])
-end
-v.Value = 0.2 
-v.Name = "ComboAt"
-if game.ReplicatedStorage.Moves["龍Strike5"]:FindFirstChild("ComboAt") then
-v = game.ReplicatedStorage.Moves["龍Strike5"]["ComboAt"]
-else
-v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["龍Strike5"])
-end
-v.Value = 0.5 
-v.Name = "ComboAt"
-if game.ReplicatedStorage.Moves["BStrike5"]:FindFirstChild("ComboAt") then
-v = game.ReplicatedStorage.Moves["BStrike5"]["ComboAt"]
-else
-v = Instance.new("NumberValue", game.ReplicatedStorage.Moves["BStrike5"])
-end
-v.Value = 0.5 
-v.Name = "ComboAt"
 if game.ReplicatedStorage.Styles:FindFirstChild("Rush") then
 v = game.ReplicatedStorage.Styles["Rush"]
 else
