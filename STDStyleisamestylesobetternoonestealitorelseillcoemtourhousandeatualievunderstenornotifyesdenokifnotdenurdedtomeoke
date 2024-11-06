@@ -1507,29 +1507,19 @@ Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
         local Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_FastFootworkRight.Anim)
         Anim.Priority = Enum.AnimationPriority.Action4
 
-        -- Small delay before starting to help with syncing
+        -- Small delay before starting to avoid sync issues
         wait(0.1)
         
-        -- Start with high speed to fast-forward the boring part
+        -- Start the animation and fast-forward through the boring part
         Anim:Play()
-        Anim:AdjustSpeed(8)  -- Initial fast speed
-        wait(0.2)  -- Fast-forwarding duration (adjust as needed)
+        Anim:AdjustSpeed(8)  -- Fast-forward speed
+        wait(0.3)  -- Adjust this to control how much of the early part you skip
 
-        -- Gradually slow down to normal speed
-        Anim:AdjustSpeed(4)
-        wait(0.2)
-        Anim:AdjustSpeed(1)  -- Set to normal speed for the main part
-        
-        -- Optional: Adjust to slower speed if you want to focus on the best part
-        Anim:AdjustSpeed(0.6) 
-        
-        -- Reset the animation when it finishes to avoid glitches
-        Anim.Stopped:Connect(function()
-            Anim:Stop()
-            Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_FastFootworkRight.Anim) -- Reload the animation
-        end)
+        -- Set to main playback speed for the best part
+        Anim:AdjustSpeed(0.6)  -- Adjust to your preferred playback speed
     end
 end)
+
 
 local Player = game.Players.LocalPlayer
 local Rep = game.ReplicatedStorage
