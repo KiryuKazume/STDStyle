@@ -791,7 +791,7 @@ v = game.ReplicatedStorage.Styles.Rush["Rush2"]
 else
 v = Instance.new("StringValue", game.ReplicatedStorage.Styles.Rush)
 end
-v.Value = '龍Attack2'
+v.Value = 'RPunch2'
 v.Name = "Rush2"
 if game.ReplicatedStorage.Styles.Rush:FindFirstChild("Rush3") then
 v = game.ReplicatedStorage.Styles.Rush["Rush3"]
@@ -889,7 +889,7 @@ v = game.ReplicatedStorage.Styles.Rush["Rush1"]
 else
 v = Instance.new("StringValue", game.ReplicatedStorage.Styles.Rush)
 end
-v.Value = '龍Attack1'
+v.Value = 'RPunch1'
 v.Name = "Rush1"
 if game.ReplicatedStorage.Styles.Rush:FindFirstChild("Strike1") then
 v = game.ReplicatedStorage.Styles.Rush["Strike1"]
@@ -1457,6 +1457,8 @@ v.Name = "HSound"
 -- Access the RStrike8 and RStrike9 moves
 local RStrike8 = game.ReplicatedStorage.Moves.RStrike8
 local RStrike9 = game.ReplicatedStorage.Moves.RStrike9
+local RPunch1 = game.ReplicatedStorage.Moves.RPunch1
+local RPunch2 = game.ReplicatedStorage.Moves.RPunch2
 
 -- Check if RStrike8 exists and modify properties
 if RStrike8 then
@@ -1482,6 +1484,34 @@ if RStrike9 then
     RStrike9.HitboxLocations.Value = '[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]'
 else
     warn("RStrike9 not found in Moves folder.")
+end
+
+-- Check if RPunch1 exists and modify properties
+if RPunch1 then
+    RPunch1.Anim.AnimationId = "rbxassetid://12338273712"
+    RPunch1.HSize.Value = 0.75
+    RPunch1.HitDur.Value = 0.35
+    RPunch1.MoveDuration.Value = 0.15
+    RPunch1.MoveForward.Value = 5
+    RPunch1.ComboAt.Value = 0.2
+    RPunch1.ForceSF.Value = 0.05
+    RPunch1.HitboxLocations.Value = '[["LeftHand",2,[0,0,0]],["LeftLowerArm",1.5,[0,0,0]],["LeftUpperArm",1,[0,0,0]]]'
+else
+    warn("RPunch1 not found in Moves folder.")
+end
+
+-- Check if RPunch2 exists and modify properties
+if RPunch2 then
+    RPunch2.Anim.AnimationId = "rbxassetid://12338275115"
+    RPunch2.HSize.Value = 0.75
+    RPunch2.HitDur.Value = 0.35
+    RPunch2.MoveDuration.Value = 0.15
+    RPunch2.MoveForward.Value = 5
+    RPunch2.ComboAt.Value = 0.2
+    RPunch2.ForceSF.Value = 0.05
+    RPunch2.HitboxLocations.Value = '[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]'
+else
+    warn("RPunch2 not found in Moves folder.")
 end
 
 local function playsound(id)
@@ -3122,10 +3152,10 @@ local function modifyStyles()
     Parker.Color.Value = Color3.new(1,1,0)
     Parker.VisualName.Value = "DE-Tenk"
     Parker.H_FullHeat.Value = "H_SpinCounterBack"
-    Parker.Rush1.Value = "RPunch1"
-    Parker.Rush2.Value = "RPunch2"
-    Parker.Rush3.Value = "RPunch3"
-    Parker.Rush4.Value = "RPunch2"
+    Parker.Rush1.Value = "RPunch3"
+    Parker.Rush2.Value = "RPunch4"
+    Parker.Rush3.Value = "RPunch5"
+    Parker.Rush4.Value = "RPunch6"
     Parker.Strike2.Value = "GStrike1"
     Parker:FindFirstChild("2Strike2").Value = "BEvadeStrikeBack"
     Parker:FindFirstChild("2Strike3").Value = "B2Strike2"
