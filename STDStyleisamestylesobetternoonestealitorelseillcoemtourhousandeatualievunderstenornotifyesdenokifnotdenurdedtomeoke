@@ -2064,7 +2064,7 @@ local lowHeatClimaxFillColor = Color3.fromRGB(70, 250, 250)  -- Light Teal for C
 local lowHeatClimaxFill2Color = Color3.fromRGB(40, 150, 250)  -- Light Teal for ClimaxFill2 (Low Heat)
 
 -- High heat colors (75 and above) (Darker, more intense Teal)
-local highHeatClimaxFillColor = Color3.fromRGB(0, 245, 230)  -- Brighter/Intense Teal for ClimaxFill (High Heat)
+local highHeatClimaxFillColor = Color3.fromRGB(0, 225, 225)  -- Brighter/Intense Teal for ClimaxFill (High Heat)
 local highHeatClimaxFill2Color = Color3.fromRGB(0, 180, 180) -- Slightly darker teal for ClimaxFill2 (High Heat)
 
 -- Function to update the ClimaxFill colors based on the heat value
