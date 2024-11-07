@@ -2056,9 +2056,11 @@ local function updateHeatColor()
                 local r = math.abs(math.sin(i * math.pi / 127)) * 255
                 local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
                 local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
-                -- Apply RGB to both front and back parts
+                -- Apply RGB to ClimaxFill, ClimaxFill2, Fill, and Fill2
                 heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
                 heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)
+                heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
+                heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
                 wait(0.05)  -- Speed of color change
             end
         end
