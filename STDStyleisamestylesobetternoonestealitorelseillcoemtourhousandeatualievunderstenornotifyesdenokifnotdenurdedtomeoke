@@ -2050,38 +2050,44 @@ local heatBar = player.PlayerGui.Interface.Battle.Main.Heat  -- Adjust this path
 
 local isCycling = false  -- Flag to check if cycling is already happening
 
+-- Function to handle color cycling when heat is above 75
 local function updateHeatColor()
-    -- Only start cycling when necessary
-    if not isCycling then
-        isCycling = true
-        spawn(function()
-            while isCycling do
-                for i = 0, 255 do
-                    local r = math.abs(math.sin(i * math.pi / 127)) * 255
-                    local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
-                    local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
-                    -- Apply RGB to ClimaxFill, ClimaxFill2, Fill, and Fill2
-                    heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
-                    heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)
-                    heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
-                    heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
-                    wait(0.05)  -- Slowed down the speed of color change to make it less intense
+    -- Check if heat is above 75
+    if heatValue.Value >= 75 then
+        -- Start cycling rainbow colors only if it's not already cycling
+        if not isCycling then
+            isCycling = true
+            spawn(function()
+                while isCycling do
+                    for i = 0, 255 do
+                        local r = math.abs(math.sin(i * math.pi / 127)) * 255
+                        local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
+                        local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
+                        -- Apply RGB to ClimaxFill, ClimaxFill2, Fill, and Fill2
+                        heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)  -- Darker
+                        heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)  -- Lighter
+                        heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
+                        heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
+                        wait(0.05)  -- Slowed down the speed of color change to make it less intense
+                    end
                 end
-            end
-        end)
+            end)
+        end
+    else
+        -- If heat is below 75, stop the rainbow cycling
+        isCycling = false
+        -- Set to default low heat color (blue for low heat)
+        heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(40, 150, 250)  -- Darker
+        heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(70, 250, 250)  -- Lighter
+        heatBar.Fill.ImageColor3 = Color3.fromRGB(40, 150, 250)
+        heatBar.Fill2.ImageColor3 = Color3.fromRGB(70, 250, 250)
     end
 end
 
--- Stop cycling if heat stops changing
-local function stopCycling()
-    isCycling = false
-end
-
--- Update color when heat changes (but no more low heat condition)
+-- Detect when heat value changes and update the color accordingly
 heatValue.Changed:Connect(updateHeatColor)
 
--- Optionally, call `stopCycling` when heat doesn't need to be updated anymore
--- Initial color update
+-- Initial color update (in case heat starts above 75)
 updateHeatColor()
 
 local uis = game:GetService("UserInputService")
