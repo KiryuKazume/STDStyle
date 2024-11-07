@@ -2049,7 +2049,7 @@ local heatValue = player.Status:WaitForChild("Heat")
 local heatBar = player.PlayerGui.Interface.Battle.Main.Heat  -- Adjust this path if needed
 
 local function updateHeatColor()
-    -- Always apply RGB cycling
+    -- Always apply RGB cycling (no low heat check)
     spawn(function()
         while true do
             for i = 0, 255 do
@@ -2063,15 +2063,9 @@ local function updateHeatColor()
             end
         end
     end)
-    
-    -- Static color for low heat when below 75
-    if heatValue.Value < 75 then
-        heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(70, 250, 250)  -- Blue for low heat
-        heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(40, 150, 250)
-    end
 end
 
--- Update color when heat changes
+-- Update color when heat changes (but no more low heat condition)
 heatValue.Changed:Connect(updateHeatColor)
 
 -- Initial color update
