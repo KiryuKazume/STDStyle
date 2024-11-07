@@ -2335,26 +2335,11 @@ local function playsound(id)
     end)
 end
 
--- The FillHeat function as provided
-local function FillHeat()
-    local Event = game:GetService("ReplicatedStorage").Events.ME
-    
-    for i = 1, 6 do
-        local A_1 = {
-            [1] = "heat", 
-            [2] = game:GetService("ReplicatedStorage").Moves.Taunt
-        }
-        Event:FireServer(A_1)
-        print("Heat action fired: " .. i)  -- Debugging line to confirm heat actions are firing
-    end
-end
-
 -- Health change function to activate the spirit and other effects
 local function HealthChanged()
     -- Runs every time Health or MaxHealth changes
     if IsSpiritActive() then
         playsound(7959271972)  -- Play the Yell sound directly
-        FillHeat()  -- Calling the FillHeat function
         task.wait(0.5)
         add_forcefield(30)
         task.wait(0.5)
