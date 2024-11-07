@@ -2044,6 +2044,48 @@ Player.PlayerGui.Interface.Prop.Uses.Use.Font = "Merriweather"
 Player.PlayerGui.EInterface.EnemyHP.TextLabel.Font = "Merriweather"
 Player.PlayerGui.EInterface.EnemyHP.BG.Meter.HPTxt.Font = "Merriweather"
 
+local player = game:GetService("Players").LocalPlayer
+local heatValue = player.Status:WaitForChild("Heat")  -- Access the heat value
+local main = player.PlayerGui:WaitForChild("Interface"):WaitForChild("Battle"):WaitForChild("Main")  -- Correct path to Main
+local heat = main:WaitForChild("Heat")  -- Correct path to Heat inside Main
+
+-- Ensure ClimaxFill and ClimaxFill2 exist before accessing them
+local climaxFill = heat:FindFirstChild("ClimaxFill")
+local climaxFill2 = heat:FindFirstChild("ClimaxFill2")
+
+-- If ClimaxFill or ClimaxFill2 is missing, log an error
+if not climaxFill or not climaxFill2 then
+    warn("ClimaxFill or ClimaxFill2 is missing! Make sure they are in the correct place.")
+    return
+end
+
+-- Low heat colors (below 75) (Blue for low heat)
+local lowHeatClimaxFillColor = Color3.fromRGB(70, 250, 250)  -- ClimaxFill (Low Heat)
+local lowHeatClimaxFill2Color = Color3.fromRGB(40, 150, 250) -- ClimaxFill2 (Low Heat)
+
+-- Darker high heat colors (75 and above)
+local highHeatClimaxFillColor = Color3.fromRGB(204, 120, 0)  -- Darker Dark Orange for ClimaxFill (High Heat)
+local highHeatClimaxFill2Color = Color3.fromRGB(255, 140, 0) -- Darker Light Orange for ClimaxFill2 (High Heat)
+
+-- Function to update the ClimaxFill colors based on the heat value
+local function updateHeatColor()
+    if heatValue.Value >= 75 then
+        -- High heat: Set darker orange colors
+        climaxFill.ImageColor3 = highHeatClimaxFillColor
+        climaxFill2.ImageColor3 = highHeatClimaxFill2Color
+    else
+        -- Low heat: Set blue colors for low heat
+        climaxFill.ImageColor3 = lowHeatClimaxFillColor
+        climaxFill2.ImageColor3 = lowHeatClimaxFill2Color
+    end
+end
+
+-- Detect when the heat value changes and update the colors
+heatValue.Changed:Connect(updateHeatColor)
+
+-- Initial color update (in case the heat starts above 75)
+updateHeatColor()
+
 local uis = game:GetService("UserInputService")
 game:GetService("RunService").Heartbeat:Connect(function()
     if uis:IsKeyDown(Enum.KeyCode[KeyToPress]) then
