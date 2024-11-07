@@ -2065,7 +2065,7 @@ local function updateHeatColor()
                     heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)
                     heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
                     heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
-                    wait(0.2)  -- Slowed down the speed of color change to make it less intense
+                    wait(0.05)  -- Slowed down the speed of color change to make it less intense
                 end
             end
         end)
