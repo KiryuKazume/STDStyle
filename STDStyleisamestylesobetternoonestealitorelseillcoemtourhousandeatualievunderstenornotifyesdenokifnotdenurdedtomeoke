@@ -1494,7 +1494,6 @@ if RPunch1 then
     RPunch1.MoveDuration.Value = 0.15
     RPunch1.MoveForward.Value = 5
     RPunch1.ComboAt.Value = 0.2
-    RPunch1.ForceSF.Value = 0.05
     RPunch1.HitboxLocations.Value = '[["LeftHand",2,[0,0,0]],["LeftLowerArm",1.5,[0,0,0]],["LeftUpperArm",1,[0,0,0]]]'
 else
     warn("RPunch1 not found in Moves folder.")
@@ -1508,7 +1507,6 @@ if RPunch2 then
     RPunch2.MoveDuration.Value = 0.15
     RPunch2.MoveForward.Value = 5
     RPunch2.ComboAt.Value = 0.2
-    RPunch2.ForceSF.Value = 0.05
     RPunch2.HitboxLocations.Value = '[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]'
 else
     warn("RPunch2 not found in Moves folder.")
