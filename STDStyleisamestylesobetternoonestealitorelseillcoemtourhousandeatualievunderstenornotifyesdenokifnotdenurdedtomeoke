@@ -2045,45 +2045,36 @@ Player.PlayerGui.EInterface.EnemyHP.TextLabel.Font = "Merriweather"
 Player.PlayerGui.EInterface.EnemyHP.BG.Meter.HPTxt.Font = "Merriweather"
 
 local player = game:GetService("Players").LocalPlayer
-local heatValue = player.Status:WaitForChild("Heat")  -- Access the heat value
-local main = player.PlayerGui:WaitForChild("Interface"):WaitForChild("Battle"):WaitForChild("Main")  -- Correct path to Main
-local heat = main:WaitForChild("Heat")  -- Correct path to Heat inside Main
+local heatValue = player.Status:WaitForChild("Heat")
+local heatBar = player.PlayerGui.Interface.Battle.Main.Heat  -- Adjust this path if needed
 
--- Ensure ClimaxFill and ClimaxFill2 exist before accessing them
-local climaxFill = heat:FindFirstChild("ClimaxFill")
-local climaxFill2 = heat:FindFirstChild("ClimaxFill2")
-
--- If ClimaxFill or ClimaxFill2 is missing, log an error
-if not climaxFill or not climaxFill2 then
-    warn("ClimaxFill or ClimaxFill2 is missing! Make sure they are in the correct place.")
-    return
-end
-
--- Low heat colors (below 75) (Teal)
-local lowHeatClimaxFillColor = Color3.fromRGB(70, 250, 250)  -- Light Teal for ClimaxFill (Low Heat)
-local lowHeatClimaxFill2Color = Color3.fromRGB(40, 150, 250)  -- Light Teal for ClimaxFill2 (Low Heat)
-
--- High heat colors (75 and above) (Darker, more intense Teal)
-local highHeatClimaxFillColor = Color3.fromRGB(0, 225, 225)  -- Brighter/Intense Teal for ClimaxFill (High Heat)
-local highHeatClimaxFill2Color = Color3.fromRGB(0, 180, 180) -- Slightly darker teal for ClimaxFill2 (High Heat)
-
--- Function to update the ClimaxFill colors based on the heat value
 local function updateHeatColor()
     if heatValue.Value >= 75 then
-        -- High heat: Set the darker teal for ClimaxFill and lighter for ClimaxFill2
-        climaxFill.ImageColor3 = highHeatClimaxFill2Color
-        climaxFill2.ImageColor3 = highHeatClimaxFillColor
+        -- RGB cycling effect for high heat
+        spawn(function()
+            while heatValue.Value >= 75 do
+                for i = 0, 255 do
+                    if heatValue.Value < 75 then break end  -- Exit if heat drops below 75
+                    local r = math.abs(math.sin(i * math.pi / 127)) * 255
+                    local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
+                    local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
+                    heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
+                    heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r * 0.8, g * 0.8, b * 0.8)  -- Slightly darker
+                    wait(0.05)  -- Speed of color change
+                end
+            end
+        end)
     else
-        -- Low heat: Set the lighter teal for ClimaxFill and darker for ClimaxFill2
-        climaxFill.ImageColor3 = lowHeatClimaxFill2Color
-        climaxFill2.ImageColor3 = lowHeatClimaxFillColor
+        -- Static color for low heat
+        heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(70, 250, 250)  -- Blue for low heat
+        heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(40, 150, 250)
     end
 end
 
--- Detect when the heat value changes and update the colors
+-- Update color when heat changes
 heatValue.Changed:Connect(updateHeatColor)
 
--- Initial color update (in case the heat starts above 75)
+-- Initial color update
 updateHeatColor()
 
 local uis = game:GetService("UserInputService")
