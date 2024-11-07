@@ -2224,6 +2224,50 @@ if dojoStyle then
     end
 end
 
+-- Reference to the 堂島の龍 folder
+local dojoStyle = game.ReplicatedStorage.Moves:FindFirstChild("RPunch2")
+
+if dojoStyle then
+    -- Table holding the names and values you want to add or modify
+    local valuesToAdd = {
+        {name = "ForceSF", value = "0.05"},
+
+
+    }
+
+    for _, entry in ipairs(valuesToAdd) do
+        local existingValue = dojoStyle:FindFirstChild(entry.name)
+        if not existingValue then
+            existingValue = Instance.new("StringValue")
+            existingValue.Name = entry.name
+            existingValue.Parent = dojoStyle  -- Parent it to 堂島の龍
+        end
+        existingValue.Value = entry.value  -- Set the value
+    end
+end
+
+-- Reference to the 堂島の龍 folder
+local dojoStyle = game.ReplicatedStorage.Moves:FindFirstChild("RPunch1")
+
+if dojoStyle then
+    -- Table holding the names and values you want to add or modify
+    local valuesToAdd = {
+        {name = "ForceSF", value = "0.05"},
+
+
+    }
+
+    for _, entry in ipairs(valuesToAdd) do
+        local existingValue = dojoStyle:FindFirstChild(entry.name)
+        if not existingValue then
+            existingValue = Instance.new("StringValue")
+            existingValue.Name = entry.name
+            existingValue.Parent = dojoStyle  -- Parent it to 堂島の龍
+        end
+        existingValue.Value = entry.value  -- Set the value
+    end
+end
+
 local movesFolder = game.ReplicatedStorage:WaitForChild("Moves")
 local ultimateEssenceFolder = movesFolder:FindFirstChild("H_GUltimateEssence")
 
