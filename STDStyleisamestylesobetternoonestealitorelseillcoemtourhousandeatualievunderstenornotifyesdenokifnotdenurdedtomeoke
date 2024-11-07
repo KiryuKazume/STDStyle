@@ -2068,13 +2068,13 @@ local function updateHeatColor()
                         heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)  -- Lighter
                         heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
                         heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
-                        wait(0.05)  -- Slowed down the speed of color change to make it less intense
+                        wait(0.05)  -- Speed up the color change to 0.05
                     end
                 end
             end)
         end
     else
-        -- If heat is below 75, stop the rainbow cycling
+        -- If heat is below 75, stop the rainbow cycling and reset colors to default blue
         isCycling = false
         -- Set to default low heat color (blue for low heat)
         heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(40, 150, 250)  -- Darker
