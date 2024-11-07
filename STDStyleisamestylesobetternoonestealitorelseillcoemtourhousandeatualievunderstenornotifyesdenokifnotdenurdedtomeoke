@@ -2048,28 +2048,39 @@ local player = game:GetService("Players").LocalPlayer
 local heatValue = player.Status:WaitForChild("Heat")
 local heatBar = player.PlayerGui.Interface.Battle.Main.Heat  -- Adjust this path if needed
 
+local isCycling = false  -- Flag to check if cycling is already happening
+
 local function updateHeatColor()
-    -- Always apply RGB cycling (no low heat check)
-    spawn(function()
-        while true do
-            for i = 0, 255 do
-                local r = math.abs(math.sin(i * math.pi / 127)) * 255
-                local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
-                local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
-                -- Apply RGB to ClimaxFill, ClimaxFill2, Fill, and Fill2
-                heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
-                heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)
-                heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
-                heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
-                wait(0.2)  -- Slowed down the speed of color change to make it less intense
+    -- Only start cycling when necessary
+    if not isCycling then
+        isCycling = true
+        spawn(function()
+            while isCycling do
+                for i = 0, 255 do
+                    local r = math.abs(math.sin(i * math.pi / 127)) * 255
+                    local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
+                    local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
+                    -- Apply RGB to ClimaxFill, ClimaxFill2, Fill, and Fill2
+                    heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
+                    heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)
+                    heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
+                    heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
+                    wait(0.2)  -- Slowed down the speed of color change to make it less intense
+                end
             end
-        end
-    end)
+        end)
+    end
+end
+
+-- Stop cycling if heat stops changing
+local function stopCycling()
+    isCycling = false
 end
 
 -- Update color when heat changes (but no more low heat condition)
 heatValue.Changed:Connect(updateHeatColor)
 
+-- Optionally, call `stopCycling` when heat doesn't need to be updated anymore
 -- Initial color update
 updateHeatColor()
 
