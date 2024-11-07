@@ -1557,8 +1557,11 @@ Main.HeatMove.TextLabel:GetPropertyChangedSignal("Text"):Connect(function()
         Main.HeatMove.TextLabel.Text = Rep.Moves.H_UltimateEssence.MoveName.Value
         local Anim = Char.Humanoid:LoadAnimation(Rep.Moves.H_GUltimateEssence.Anim)
         Anim.Priority = Enum.AnimationPriority.Action4
-        Anim:AdjustSpeed(0.9)
         Anim:Play()
+        
+        -- Add a short delay before adjusting the speed
+        wait(0.1)
+        Anim:AdjustSpeed(1.2)  -- Attempt to change speed after loading
         Anim:Destroy()
     end
 end)
