@@ -2049,24 +2049,23 @@ local heatValue = player.Status:WaitForChild("Heat")
 local heatBar = player.PlayerGui.Interface.Battle.Main.Heat  -- Adjust this path if needed
 
 local function updateHeatColor()
-    if heatValue.Value >= 75 then
-        -- RGB cycling effect for high heat
-        spawn(function()
-            while heatValue.Value >= 75 do
-                for i = 0, 255 do
-                    if heatValue.Value < 75 then break end  -- Exit if heat drops below 75
-                    local r = math.abs(math.sin(i * math.pi / 127)) * 255
-                    local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
-                    local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
-                    -- Apply RGB to both front and back parts
-                    heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
-                    heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)
-                    wait(0.05)  -- Speed of color change
-                end
+    -- Always apply RGB cycling
+    spawn(function()
+        while true do
+            for i = 0, 255 do
+                local r = math.abs(math.sin(i * math.pi / 127)) * 255
+                local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
+                local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
+                -- Apply RGB to both front and back parts
+                heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
+                heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)
+                wait(0.05)  -- Speed of color change
             end
-        end)
-    else
-        -- Static color for low heat
+        end
+    end)
+    
+    -- Static color for low heat when below 75
+    if heatValue.Value < 75 then
         heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(70, 250, 250)  -- Blue for low heat
         heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(40, 150, 250)
     end
