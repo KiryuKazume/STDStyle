@@ -1923,6 +1923,8 @@ game.ReplicatedStorage.Moves.H_GUltimateEssence.Closest.Value = "1000"
 game.ReplicatedStorage.Moves.H_GUltimateEssence.Distance.Value = "1000"
 game.ReplicatedStorage.Moves.H_Rolling.Distance.Value = "1000"
 game.ReplicatedStorage.Moves.H_Rolling.Closest.Value = "1000"
+game.ReplicatedStorage.Moves.H_Rolling.HeatNeeded.Value = "Normal"
+game.ReplicatedStorage.Moves.H_Rolling.HeatUse.Value = "50"
 game.ReplicatedStorage.Moves.ShuckyStun.Anim.AnimationId = "rbxassetid://12051777670"
 game.ReplicatedStorage.Styles.Rush.Idle.AnimationId = "rbxassetid://3188210696"
 game.ReplicatedStorage.Moves.BStrike5.Anim.AnimationId = "rbxassetid://7603768348"
@@ -2190,6 +2192,21 @@ if dojoStyle then
         end
         existingValue.Value = entry.value  -- Set the value
     end
+end
+
+local movesFolder = game.ReplicatedStorage:WaitForChild("Moves")
+local ultimateEssenceFolder = movesFolder:FindFirstChild("H_GUltimateEssence")
+
+if ultimateEssenceFolder and ultimateEssenceFolder:IsA("Folder") then
+    local ragdollHeight = ultimateEssenceFolder:FindFirstChild("RagdollHeight")
+    if ragdollHeight and ragdollHeight:IsA("StringValue") then
+        ragdollHeight:Destroy()
+        print("RagdollHeight StringValue has been removed.")
+    else
+        print("RagdollHeight not found or is not a StringValue.")
+    end
+else
+    print("H_GUltimateEssence folder not found in Moves.")
 end
 
 -- Function to add the Cancelable folder to a given taunt
