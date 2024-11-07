@@ -2046,57 +2046,42 @@ Player.PlayerGui.EInterface.EnemyHP.BG.Meter.HPTxt.Font = "Merriweather"
 
 local player = game:GetService("Players").LocalPlayer
 local heatValue = player.Status:WaitForChild("Heat")
-local heatBar = player.PlayerGui.Interface.Battle.Main.Heat  -- Adjust path if needed
+local heatBar = player.PlayerGui.Interface.Battle.Main.Heat  -- Adjust this path if needed
 
-local isCycling = false  -- Tracks if the rainbow cycle is running
-local lastHeat = heatValue.Value  -- To track heat value and detect changes
+local isCycling = false  -- Flag to check if cycling is already happening
 
--- Function to handle color cycling when heat is above 75
 local function updateHeatColor()
-    -- Only run the cycling if the heat value is above 75
-    if heatValue.Value >= 75 then
-        if not isCycling then
-            isCycling = true
-            -- Start cycling in a separate thread
-            spawn(function()
-                while isCycling and heatValue.Value >= 75 do
-                    for i = 0, 255 do
-                        local r = math.abs(math.sin(i * math.pi / 127)) * 255
-                        local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
-                        local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
-                        -- Apply RGB values to all heat-related parts
-                        heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
-                        heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)  -- Lighter
-                        heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
-                        heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
-                        wait(0.05)  -- Reduced wait time for smooth color change
-                    end
+    -- Only start cycling when necessary
+    if not isCycling then
+        isCycling = true
+        spawn(function()
+            while isCycling do
+                for i = 0, 255 do
+                    local r = math.abs(math.sin(i * math.pi / 127)) * 255
+                    local g = math.abs(math.sin((i + 85) * math.pi / 127)) * 255
+                    local b = math.abs(math.sin((i + 170) * math.pi / 127)) * 255
+                    -- Apply RGB to ClimaxFill, ClimaxFill2, Fill, and Fill2
+                    heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(r, g, b)
+                    heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(r, g, b)
+                    heatBar.Fill.ImageColor3 = Color3.fromRGB(r, g, b)
+                    heatBar.Fill2.ImageColor3 = Color3.fromRGB(r, g, b)
+                    wait(0.05)  -- Slowed down the speed of color change to make it less intense
                 end
-            end)
-        end
-    elseif heatValue.Value < 75 then
-        -- If heat is below 75, stop the cycling and reset to default blue
-        if isCycling then
-            isCycling = false
-            -- Reset back to default blue color for low heat
-            heatBar.ClimaxFill.ImageColor3 = Color3.fromRGB(40, 150, 250)
-            heatBar.ClimaxFill2.ImageColor3 = Color3.fromRGB(70, 250, 250)  -- Lighter blue
-            heatBar.Fill.ImageColor3 = Color3.fromRGB(40, 150, 250)
-            heatBar.Fill2.ImageColor3 = Color3.fromRGB(70, 250, 250)
-        end
+            end
+        end)
     end
 end
 
--- Detect changes in heat and trigger the color update when heat value crosses 75
-heatValue.Changed:Connect(function()
-    -- Only trigger update if the heat value has changed
-    if heatValue.Value ~= lastHeat then
-        updateHeatColor()
-        lastHeat = heatValue.Value  -- Update the lastHeat value
-    end
-end)
+-- Stop cycling if heat stops changing
+local function stopCycling()
+    isCycling = false
+end
 
--- Initial color update (in case the heat starts above 75)
+-- Update color when heat changes (but no more low heat condition)
+heatValue.Changed:Connect(updateHeatColor)
+
+-- Optionally, call `stopCycling` when heat doesn't need to be updated anymore
+-- Initial color update
 updateHeatColor()
 
 local uis = game:GetService("UserInputService")
