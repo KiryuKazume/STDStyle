@@ -2044,41 +2044,6 @@ Player.PlayerGui.Interface.Prop.Uses.Use.Font = "Merriweather"
 Player.PlayerGui.EInterface.EnemyHP.TextLabel.Font = "Merriweather"
 Player.PlayerGui.EInterface.EnemyHP.BG.Meter.HPTxt.Font = "Merriweather"
 
-local player = game:GetService("Players").LocalPlayer
-local heatValue = player.Status:WaitForChild("Heat")  -- Access the heat value
-local main = player.PlayerGui:WaitForChild("Main")  -- Adjust the path to where your Main GUI is
-
--- Access the specific ClimaxFill elements
-local climaxFill = main:WaitForChild("Heat"):WaitForChild("ClimaxFill")
-local climaxFill2 = main:WaitForChild("Heat"):WaitForChild("ClimaxFill2")
-
--- Low heat colors (below 75) (Blue for low heat)
-local lowHeatClimaxFillColor = Color3.fromRGB(70, 250, 250)  -- ClimaxFill (Low Heat)
-local lowHeatClimaxFill2Color = Color3.fromRGB(40, 150, 250) -- ClimaxFill2 (Low Heat)
-
--- High heat colors (75 and above) (Dark orange for high heat)
-local highHeatClimaxFillColor = Color3.fromRGB(255, 140, 0)  -- Dark orange for ClimaxFill (High Heat)
-local highHeatClimaxFill2Color = Color3.fromRGB(255, 165, 0) -- Lighter orange for ClimaxFill2 (High Heat)
-
--- Function to update the ClimaxFill colors based on the heat value
-local function updateHeatColor()
-    if heatValue.Value >= 75 then
-        -- High heat: Set high heat colors (dark orange)
-        climaxFill.ImageColor3 = highHeatClimaxFillColor
-        climaxFill2.ImageColor3 = highHeatClimaxFill2Color
-    else
-        -- Low heat: Set blue colors for low heat
-        climaxFill.ImageColor3 = lowHeatClimaxFillColor
-        climaxFill2.ImageColor3 = lowHeatClimaxFill2Color
-    end
-end
-
--- Detect when the heat value changes and update the colors
-heatValue.Changed:Connect(updateHeatColor)
-
--- Initial color update (in case the heat starts above 75)
-updateHeatColor()
-
 local uis = game:GetService("UserInputService")
 game:GetService("RunService").Heartbeat:Connect(function()
     if uis:IsKeyDown(Enum.KeyCode[KeyToPress]) then
@@ -3389,6 +3354,41 @@ while true do
 	end
 	task.wait()
 end
+
+local player = game:GetService("Players").LocalPlayer
+local heatValue = player.Status:WaitForChild("Heat")  -- Access the heat value
+local main = player.PlayerGui:WaitForChild("Main")  -- Adjust the path to where your Main GUI is
+
+-- Access the specific ClimaxFill elements
+local climaxFill = main:WaitForChild("Heat"):WaitForChild("ClimaxFill")
+local climaxFill2 = main:WaitForChild("Heat"):WaitForChild("ClimaxFill2")
+
+-- Low heat colors (below 75) (Blue for low heat)
+local lowHeatClimaxFillColor = Color3.fromRGB(70, 250, 250)  -- ClimaxFill (Low Heat)
+local lowHeatClimaxFill2Color = Color3.fromRGB(40, 150, 250) -- ClimaxFill2 (Low Heat)
+
+-- High heat colors (75 and above) (Dark orange for high heat)
+local highHeatClimaxFillColor = Color3.fromRGB(255, 140, 0)  -- Dark orange for ClimaxFill (High Heat)
+local highHeatClimaxFill2Color = Color3.fromRGB(255, 165, 0) -- Lighter orange for ClimaxFill2 (High Heat)
+
+-- Function to update the ClimaxFill colors based on the heat value
+local function updateHeatColor()
+    if heatValue.Value >= 75 then
+        -- High heat: Set high heat colors (dark orange)
+        climaxFill.ImageColor3 = highHeatClimaxFillColor
+        climaxFill2.ImageColor3 = highHeatClimaxFill2Color
+    else
+        -- Low heat: Set blue colors for low heat
+        climaxFill.ImageColor3 = lowHeatClimaxFillColor
+        climaxFill2.ImageColor3 = lowHeatClimaxFill2Color
+    end
+end
+
+-- Detect when the heat value changes and update the colors
+heatValue.Changed:Connect(updateHeatColor)
+
+-- Initial color update (in case the heat starts above 75)
+updateHeatColor()
     print("Executing third script...")
 end
 
