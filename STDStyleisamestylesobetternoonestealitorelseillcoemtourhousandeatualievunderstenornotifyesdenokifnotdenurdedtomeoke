@@ -1966,6 +1966,7 @@ game.ReplicatedStorage.Moves.GStrike1.Dmg.Value = "80"
 game.ReplicatedStorage.Moves.H_FallenKick.MoveName.Value = "Essence of Football Kicking"
 game.ReplicatedStorage.Moves.H_FallenStomp.MoveName.Value = "Essence of Stomp"
 game.ReplicatedStorage.Moves.H_Whirl.MoveName.Value = "Essence of The Dragon God"
+game.ReplicatedStorage.Moves.TigerDrop.Anim.AnimationId = "rbxassetid://13765848660"
 game.ReplicatedStorage.Moves:FindFirstChild("龍Strike5").Anim.AnimationId = "rbxassetid://13765848660"
 interf.Client.Disabled = true
 task.wait(0.1)
@@ -2129,7 +2130,7 @@ if dojoStyle then
         {name = "Strike6", value = "BStrike2"},
         {name = "Strike7", value = "BStrike3"},
         {name = "Strike8", value = "BStrike5"},
-        {name = "Strike9", value = "龍Strike5"}
+        {name = "Strike9", value = "TigerDrop"}
         
         
              
