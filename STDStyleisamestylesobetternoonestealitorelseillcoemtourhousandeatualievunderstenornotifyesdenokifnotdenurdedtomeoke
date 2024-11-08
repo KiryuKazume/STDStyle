@@ -3448,24 +3448,26 @@ else
 end
 
 local function updateValues()
+    local moves = game.ReplicatedStorage.Moves
+
     if heat.Value == 100 then
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.4
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 750
-        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 750
+        moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.4
+        moves.RStrike8.ComboAt.Value = 0.3
+        moves.RStrike9.ComboAt.Value = 0.3
+        moves.RStrike8.Dmg.Value = 750
+        moves.RStrike9.Dmg.Value = 750
     elseif heat.Value < 100 then
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.6
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.5
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.5
-        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 120
-        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 120
+        moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.6
+        moves.RStrike8.ComboAt.Value = 0.5
+        moves.RStrike9.ComboAt.Value = 0.5
+        moves.RStrike8.Dmg.Value = 120
+        moves.RStrike9.Dmg.Value = 120
     end
 end
 
