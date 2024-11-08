@@ -2481,27 +2481,6 @@ end
 -- Listen for health and max health changes
 plr.Status.MaxHealth.Changed:Connect(HealthChanged)
 plr.Status.Health.Changed:Connect(HealthChanged)
-
--- Define the path to the Brawler Color value
-local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
-
--- Make sure the Color value exists
-if colorValue and colorValue:IsA("Color3Value") then
-    -- Start a loop to update the color over time using task.wait for better performance
-    while true do
-        -- Ensure the colorValue is still valid before updating
-        if colorValue and colorValue:IsA("Color3Value") then
-            local hue = (tick() % 5) / 5  -- Cycles through hues every 5 seconds
-            colorValue.Value = Color3.fromHSV(hue, 1, 1)  -- Full saturation and brightness
-        else
-            warn("Color value lost!")
-            break  -- Exit the loop if colorValue is no longer valid
-        end
-        task.wait(0.1)  -- Update every 0.1 seconds for a smooth effect
-    end
-else
-    warn("Color value not found in Brawler!")
-end
     print("Executing first script...")
 end
 
