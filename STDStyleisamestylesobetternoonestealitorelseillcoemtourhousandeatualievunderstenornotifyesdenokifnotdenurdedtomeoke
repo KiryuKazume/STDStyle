@@ -1454,25 +1454,6 @@ end
 v.Value = 'MassiveSlap'
 v.Name = "HSound"
 
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local movesFolder = replicatedStorage:WaitForChild("Moves")
-local tigerDrop = movesFolder:FindFirstChild("TigerDrop")
-
-if tigerDrop then
-    -- Clone the TigerDrop folder twice
-    local fakeTigerDrop1 = tigerDrop:Clone()
-    fakeTigerDrop1.Name = "FakeTigerDrop1"
-    fakeTigerDrop1.Parent = movesFolder
-
-    local fakeTigerDrop2 = tigerDrop:Clone()
-    fakeTigerDrop2.Name = "FakeTigerDrop2"
-    fakeTigerDrop2.Parent = movesFolder
-
-    print("FakeTigerDrop1 and FakeTigerDrop2 created successfully.")
-else
-    warn("TigerDrop folder not found in Moves.")
-end
-
 -- Access the RStrike8 and RStrike9 moves
 local RStrike8 = game.ReplicatedStorage.Moves.RStrike8
 local fakeTigerDrop1 = "game.ReplicatedStorage.Moves.FakeTigerDrop1
@@ -1531,34 +1512,6 @@ if RPunch2 then
     RPunch2.HitboxLocations.Value = '[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]'
 else
     warn("RPunch2 not found in Moves folder.")
-end
-
--- Check if FakeTigerDrop1 exists and modify properties
-if fakeTigerDrop1 then
-    fakeTigerDrop1.Anim.AnimationId = "rbxassetid://11699263554"
-    fakeTigerDrop1.HSize.Value = 0.75
-    fakeTigerDrop1.HitDur.Value = 0.35
-    fakeTigerDrop1.MoveDuration.Value = 0.3
-    fakeTigerDrop1.MoveForward.Value = 6
-    fakeTigerDrop1.ForceSF.Value = 0.05
-    fakeTigerDrop1.HitboxLocations.Value = '[["LeftHand",2,[0,0,0]],["LeftLowerArm",1.5,[0,0,0]],["LeftUpperArm",1,[0,0,0]]]'
-    print("FakeTigerDrop1 properties set successfully.")
-else
-    warn("FakeTigerDrop1 not found in Moves folder.")
-end
-
--- Check if FakeTigerDrop2 exists and modify properties
-if fakeTigerDrop2 then
-    fakeTigerDrop2.Anim.AnimationId = "rbxassetid://11699262955"
-    fakeTigerDrop2.HSize.Value = 0.75
-    fakeTigerDrop2.HitDur.Value = 0.35
-    fakeTigerDrop2.MoveDuration.Value = 0.3
-    fakeTigerDrop2.MoveForward.Value = 6
-    fakeTigerDrop2.ForceSF.Value = 0.05
-    fakeTigerDrop2.HitboxLocations.Value = '[["RightHand",2,[0,0,0]],["RightLowerArm",1.5,[0,0,0]],["RightUpperArm",1,[0,0,0]]]'
-    print("FakeTigerDrop2 properties set successfully.")
-else
-    warn("FakeTigerDrop2 not found in Moves folder.")
 end
 
 local function playsound(id)
@@ -2169,10 +2122,10 @@ if dojoStyle then
         {name = "H_EvadedR", value = "H_FastFootworkRight"},
         {name = "H_Stunning", value = "H_Reversal"},
         {name = "H_Stunned", value = "H_FlyingKick"},
-        {name = "Rush5", value = "FakeTigerDrop1"},
-        {name = "Rush6", value = "FakeTigerDrop2"},
-        {name = "Rush7", value = "FakeTigerDrop1"},
-        {name = "Rush8", value = "FakeTigerDrop2"},
+        {name = "Rush5", value = "RStrike8"},
+        {name = "Rush6", value = "RStrike9"},
+        {name = "Rush7", value = "RStrike8"},
+        {name = "Rush8", value = "RStrike9"},
         {name = "Strike6", value = "BStrike2"},
         {name = "Strike7", value = "BStrike3"},
         {name = "Strike8", value = "BStrike5"},
