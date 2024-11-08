@@ -3470,58 +3470,6 @@ heatValue.Changed:Connect(updateHeatColor)
 
 -- Initial color update (in case the heat starts above 75)
 updateHeatColor()
-
-local player = game.Players.LocalPlayer
-local heat = player.Status.Heat
-local moves = game.ReplicatedStorage.Moves
-local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
-
--- Function to update the color continuously
-if colorValue and colorValue:IsA("Color3Value") then
-    while true do
-        local hue = (tick() % 5) / 5
-        colorValue.Value = Color3.fromHSV(hue, 1, 1)
-        wait(0.1)  -- Updates every 0.1 seconds for smooth color transition
-    end
-else
-    warn("Color value not found in Brawler!")
-end
-
--- Function to update the ComboAt and Dmg values based on heat
-local function updateValues()
-    local comboAtLow = {0.3, 0.3, 0.3, 0.6}
-    local comboAtHigh = {0.1, 0.1, 0.1, 0.4}
-    local dmgLow = {120, 120}
-    local dmgHigh = {750, 750}
-    local attackMoves = {"龍Attack1", "龍Attack2", "龍Attack3", "龍Attack4"}
-    local rStrikeMoves = {"RStrike8", "RStrike9"}
-
-    local comboAt, dmg
-    if heat.Value == 100 then
-        comboAt = comboAtHigh
-        dmg = dmgHigh
-    else
-        comboAt = comboAtLow
-        dmg = dmgLow
-    end
-
-    -- Update ComboAt values for attack moves
-    for i, moveName in ipairs(attackMoves) do
-        moves:FindFirstChild(moveName).ComboAt.Value = comboAt[i]
-    end
-    
-    -- Update ComboAt and Dmg for RStrike moves
-    for i, moveName in ipairs(rStrikeMoves) do
-        moves:FindFirstChild(moveName).ComboAt.Value = comboAt[3]
-        moves:FindFirstChild(moveName).Dmg.Value = dmg[i]
-    end
-end
-
--- Constantly check and update values based on heat
-while true do
-    updateValues()  -- Call the function to update the values
-    wait(1)  -- Update every 1 second
-end
     print("Executing third script...")
 end
 
