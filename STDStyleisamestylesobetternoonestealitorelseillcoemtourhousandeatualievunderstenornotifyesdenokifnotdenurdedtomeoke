@@ -1956,61 +1956,6 @@ interf.Client.Disabled = true
 task.wait(0.1)
 interf.Client.Disabled = false
 
-local player = game.Players.LocalPlayer
-local heat = player.Status.Heat
-local moves = game.ReplicatedStorage.Moves
-local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
-
--- Function to continuously update the color
-local function updateColor()
-    while true do
-        local hue = (tick() % 5) / 5  -- Cycles through hues every 5 seconds
-        colorValue.Value = Color3.fromHSV(hue, 1, 1)  -- Full saturation and brightness
-        wait(0.1)  -- Update every 0.1 seconds
-    end
-end
-
--- Start the color update in a new thread if the Color value exists
-if colorValue and colorValue:IsA("Color3Value") then
-    spawn(updateColor)
-else
-    warn("Color value not found in Brawler!")
-end
-
--- Function to update the ComboAt and Dmg values based on heat
-local function updateValues()
-    if heat.Value == 100 then
-        -- Set ComboAt and Dmg for moves when heat is 100
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.4
-
-        -- Set ComboAt and Dmg for RStrike moves (RStrike8 and RStrike9)
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.3  -- ComboAt for RStrike8
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.3  -- ComboAt for RStrike9
-        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 750  -- Dmg for RStrike8
-        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 750  -- Dmg for RStrike9
-    elseif heat.Value < 100 then
-        -- Set ComboAt and Dmg for moves when heat is below 100
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
-        game.ReplicatedStorage.Moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.6
-
-        -- Set ComboAt and Dmg for RStrike moves (RStrike8 and RStrike9)
-        game.ReplicatedStorage.Moves.RStrike8.ComboAt.Value = 0.5  -- ComboAt for RStrike8
-        game.ReplicatedStorage.Moves.RStrike9.ComboAt.Value = 0.5  -- ComboAt for RStrike9
-        game.ReplicatedStorage.Moves.RStrike8.Dmg.Value = 120  -- Dmg for RStrike8
-        game.ReplicatedStorage.Moves.RStrike9.Dmg.Value = 120  -- Dmg for RStrike9
-    end
-end
-
--- Use Heartbeat for checking heat value to reduce impact on performance
-game:GetService("RunService").Heartbeat:Connect(function()
-    updateValues()  -- Call the function to update the values
-end)
-
 local animationId = "rbxassetid://10928237540"
 local animationSpeed = 3 -- Change this value to set the desired speed
 
@@ -3487,3 +3432,64 @@ wait(1)
 
 -- Execute the third script
 executeThirdScript()
+
+local player = game.Players.LocalPlayer
+local heat = player.Status.Heat
+local moves = game.ReplicatedStorage.Moves
+local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
+
+-- Function to continuously update the color (runs in a separate thread)
+local function updateColor()
+    while true do
+        local hue = (tick() % 5) / 5  -- Cycles through hues every 5 seconds
+        if colorValue then
+            colorValue.Value = Color3.fromHSV(hue, 1, 1)  -- Full saturation and brightness
+        end
+        wait(0.1)  -- Update every 0.1 seconds
+    end
+end
+
+-- Start color update thread
+if colorValue and colorValue:IsA("Color3Value") then
+    spawn(updateColor)
+else
+    warn("Color value not found in Brawler!")
+end
+
+-- Function to update ComboAt and Dmg values based on heat
+local function updateValues()
+    local heatValue = heat.Value
+    local heatMax = 100
+    
+    -- Check if heat is full or not
+    if heatValue == heatMax then
+        -- Set ComboAt and Dmg values for moves when heat is 100
+        moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.4
+
+        -- Set ComboAt and Dmg for RStrike moves (RStrike8 and RStrike9)
+        moves.RStrike8.ComboAt.Value = 0.3
+        moves.RStrike9.ComboAt.Value = 0.3
+        moves.RStrike8.Dmg.Value = 750
+        moves.RStrike9.Dmg.Value = 750
+    elseif heatValue < heatMax then
+        -- Set ComboAt and Dmg for moves when heat is below 100
+        moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.6
+
+        -- Set ComboAt and Dmg for RStrike moves (RStrike8 and RStrike9)
+        moves.RStrike8.ComboAt.Value = 0.5
+        moves.RStrike9.ComboAt.Value = 0.5
+        moves.RStrike8.Dmg.Value = 120
+        moves.RStrike9.Dmg.Value = 120
+    end
+end
+
+-- Use Heartbeat to periodically check heat value every frame
+game:GetService("RunService").Heartbeat:Connect(function()
+    updateValues()  -- Call the function to update the values
+end)
