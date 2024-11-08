@@ -1970,7 +1970,7 @@ local function updateColor()
     end
 end
 
--- Start the color update in a new thread
+-- Start the color update in a new thread if the Color value exists
 if colorValue and colorValue:IsA("Color3Value") then
     spawn(updateColor)
 else
@@ -2006,11 +2006,10 @@ local function updateValues()
     end
 end
 
--- Constantly check and update values based on heat
-while true do
+-- Use Heartbeat for checking heat value to reduce impact on performance
+game:GetService("RunService").Heartbeat:Connect(function()
     updateValues()  -- Call the function to update the values
-    wait(1)  -- Update every 1 second
-end
+end)
 
 local animationId = "rbxassetid://10928237540"
 local animationSpeed = 3 -- Change this value to set the desired speed
