@@ -1456,8 +1456,6 @@ v.Name = "HSound"
 
 -- Access the RStrike8 and RStrike9 moves
 local RStrike8 = game.ReplicatedStorage.Moves.RStrike8
-local fakeTigerDrop1 = "game.ReplicatedStorage.Moves.FakeTigerDrop1
-local fakeTigerDrop2 = "game.ReplicatedStorage.Moves.FakeTigerDrop2
 local RStrike9 = game.ReplicatedStorage.Moves.RStrike9
 local RPunch1 = game.ReplicatedStorage.Moves.RPunch1
 local RPunch2 = game.ReplicatedStorage.Moves.RPunch2
