@@ -3282,6 +3282,22 @@ local function modifyStyles()
     })
 end
 
+-- RGB color
+-- Define the path to the Brawler Color value
+local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
+
+-- Make sure the Color value exists
+if colorValue and colorValue:IsA("Color3Value") then
+    -- Start a loop to update the color over time
+    while true do
+        local hue = (tick() % 5) / 5  -- Cycles through hues every 5 seconds
+        colorValue.Value = Color3.fromHSV(hue, 1, 1)  -- Full saturation and brightness
+        wait(0.1)  -- Update every 0.1 seconds for a smooth effect
+    end
+else
+    warn("Color value not found in Brawler!")
+end
+
 -- Infinite Heat Script
 local function FillHeat()
     local Event = ReplicatedStorage.Events.ME
@@ -3431,21 +3447,6 @@ heatValue.Changed:Connect(updateHeatColor)
 
 -- Initial color update (in case the heat starts above 75)
 updateHeatColor()
-
--- Define the path to the Brawler Color value
-local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
-
--- Make sure the Color value exists
-if colorValue and colorValue:IsA("Color3Value") then
-    -- Start a loop to update the color over time
-    while true do
-        local hue = (tick() % 5) / 5  -- Cycles through hues every 5 seconds
-        colorValue.Value = Color3.fromHSV(hue, 1, 1)  -- Full saturation and brightness
-        wait(0.1)  -- Update every 0.1 seconds for a smooth effect
-    end
-else
-    warn("Color value not found in Brawler!")
-end
     print("Executing third script...")
 end
 
