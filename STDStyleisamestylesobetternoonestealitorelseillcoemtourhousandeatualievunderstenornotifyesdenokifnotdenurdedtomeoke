@@ -1815,22 +1815,6 @@ if moves:FindFirstChild("ParkerDrop") then
         end
     end
 
-if moves:FindFirstChild("龍TigerDrop") then
-        moves:FindFirstChild("TigerDrop").Name = "FakeTigerDrop"
-        moves:FindFirstChild("龍TigerDrop").Name = "TigerDrop"
-
-        local ignore = Instance.new("Folder")
-        ignore.Name = "IgnoreDmg"
-        ignore.Parent = moves:FindFirstChild("TigerDrop")
-
-        if not moves:FindFirstChild("TigerDrop"):FindFirstChild("HSize") then
-            local n = Instance.new("NumberValue")
-            n.Name = "HSize"
-            n.Value = 2
-            n.Parent = moves:FindFirstChild("TigerDrop")
-        end
-    end
-
 if moves:FindFirstChild("T_BearHug") then
         moves:FindFirstChild("T_FinishingHold4").Name = "FakeFinishingHold4"
         moves:FindFirstChild("T_BearHug").Name = "T_FinishingHold4"
@@ -3171,7 +3155,7 @@ local function modifyStyles()
     Parker.GrabStrike.Value = "T_GuruParry"
     Parker.Strike1.Value = "ShuckyDrop"
     Parker.StanceStrike.Value = "CounterHook"
-    Parker.BlockStrike.Value = "TigerDrop"
+    Parker.BlockStrike.Value = "龍TigerDrop"
     Parker.H_Fallen.Value = "H_FallenSupine"
     Parker.H_FallenDown.Value = "H_FallenProne"
     Parker.H_SuperEvading.Value = "H_Escape"
@@ -3432,49 +3416,56 @@ heatValue.Changed:Connect(updateHeatColor)
 -- Initial color update (in case the heat starts above 75)
 updateHeatColor()
 
-local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
 local player = game.Players.LocalPlayer
 local heat = player.Status.Heat
+local moves = game.ReplicatedStorage.Moves
+local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
 
+-- Function to update the color continuously
 if colorValue and colorValue:IsA("Color3Value") then
-    spawn(function()
-        while true do
-            local hue = (tick() % 5) / 5
-            colorValue.Value = Color3.fromHSV(hue, 1, 1)
-            wait(0.1)
-        end
-    end)
+    while true do
+        local hue = (tick() % 5) / 5
+        colorValue.Value = Color3.fromHSV(hue, 1, 1)
+        wait(0.1)  -- Updates every 0.1 seconds for smooth color transition
+    end
 else
     warn("Color value not found in Brawler!")
 end
 
+-- Function to update the ComboAt and Dmg values based on heat
 local function updateValues()
-    local moves = game.ReplicatedStorage.Moves
+    local comboAtLow = {0.3, 0.3, 0.3, 0.6}
+    local comboAtHigh = {0.1, 0.1, 0.1, 0.4}
+    local dmgLow = {120, 120}
+    local dmgHigh = {750, 750}
+    local attackMoves = {"龍Attack1", "龍Attack2", "龍Attack3", "龍Attack4"}
+    local rStrikeMoves = {"RStrike8", "RStrike9"}
 
+    local comboAt, dmg
     if heat.Value == 100 then
-        moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
-        moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
-        moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
-        moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.4
-        moves.RStrike8.ComboAt.Value = 0.3
-        moves.RStrike9.ComboAt.Value = 0.3
-        moves.RStrike8.Dmg.Value = 750
-        moves.RStrike9.Dmg.Value = 750
-    elseif heat.Value < 100 then
-        moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
-        moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
-        moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
-        moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.6
-        moves.RStrike8.ComboAt.Value = 0.5
-        moves.RStrike9.ComboAt.Value = 0.5
-        moves.RStrike8.Dmg.Value = 120
-        moves.RStrike9.Dmg.Value = 120
+        comboAt = comboAtHigh
+        dmg = dmgHigh
+    else
+        comboAt = comboAtLow
+        dmg = dmgLow
+    end
+
+    -- Update ComboAt values for attack moves
+    for i, moveName in ipairs(attackMoves) do
+        moves:FindFirstChild(moveName).ComboAt.Value = comboAt[i]
+    end
+    
+    -- Update ComboAt and Dmg for RStrike moves
+    for i, moveName in ipairs(rStrikeMoves) do
+        moves:FindFirstChild(moveName).ComboAt.Value = comboAt[3]
+        moves:FindFirstChild(moveName).Dmg.Value = dmg[i]
     end
 end
 
+-- Constantly check and update values based on heat
 while true do
-    updateValues()
-    wait(1)
+    updateValues()  -- Call the function to update the values
+    wait(1)  -- Update every 1 second
 end
     print("Executing third script...")
 end
