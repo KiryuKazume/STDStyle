@@ -1,9 +1,65 @@
 --First Script
 local function executeFirstScript()
--- Options
-local KeyToPress = "C" -- Right click while holding C
-local StyleName = "Self-Taught Dragon" -- Style name
-local StyleColor = Color3.fromRGB(255,211,50) -- Style color
+local player = game.Players.LocalPlayer
+local heat = player.Status.Heat
+local moves = game.ReplicatedStorage.Moves
+local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
+
+-- Function to continuously update the color (runs in a separate thread)
+local function updateColor()
+    while true do
+        local hue = (tick() % 5) / 5  -- Cycles through hues every 5 seconds
+        if colorValue then
+            colorValue.Value = Color3.fromHSV(hue, 1, 1)  -- Full saturation and brightness
+        end
+        wait(0.1)  -- Update every 0.1 seconds
+    end
+end
+
+-- Start color update thread
+if colorValue and colorValue:IsA("Color3Value") then
+    spawn(updateColor)
+else
+    warn("Color value not found in Brawler!")
+end
+
+-- Function to update ComboAt and Dmg values based on heat
+local function updateValues()
+    local heatValue = heat.Value
+    local heatMax = 100
+    
+    -- Check if heat is full or not
+    if heatValue == heatMax then
+        -- Set ComboAt and Dmg values for moves when heat is 100
+        moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.1
+        moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.4
+
+        -- Set ComboAt and Dmg for RStrike moves (RStrike8 and RStrike9)
+        moves.RStrike8.ComboAt.Value = 0.3
+        moves.RStrike9.ComboAt.Value = 0.3
+        moves.RStrike8.Dmg.Value = 750
+        moves.RStrike9.Dmg.Value = 750
+    elseif heatValue < heatMax then
+        -- Set ComboAt and Dmg for moves when heat is below 100
+        moves:FindFirstChild("龍Attack1").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack2").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack3").ComboAt.Value = 0.3
+        moves:FindFirstChild("龍Attack4").ComboAt.Value = 0.6
+
+        -- Set ComboAt and Dmg for RStrike moves (RStrike8 and RStrike9)
+        moves.RStrike8.ComboAt.Value = 0.5
+        moves.RStrike9.ComboAt.Value = 0.5
+        moves.RStrike8.Dmg.Value = 120
+        moves.RStrike9.Dmg.Value = 120
+    end
+end
+
+-- Use Heartbeat to periodically check heat value every frame
+game:GetService("RunService").Heartbeat:Connect(function()
+    updateValues()  -- Call the function to update the values
+end)
 
 local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://9426968107" -- 9426968107
@@ -90,13 +146,6 @@ v = Instance.new("NumberValue", game.ReplicatedStorage.Styles.Brawler)
 end
 v.Value = 1.9
 v.Name = "Speed"
-if game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color") then
-v = game.ReplicatedStorage.Styles.Brawler["Color"]
-else
-v = Instance.new("Color3Value", game.ReplicatedStorage.Styles.Brawler)
-end
-v.Value = Color3.fromRGB(255, 0, 0)
-v.Name = "Color"
 if game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Strike1") then
 v = game.ReplicatedStorage.Styles.Brawler["Strike1"]
 else
