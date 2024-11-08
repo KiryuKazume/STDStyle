@@ -1899,6 +1899,8 @@ sendNotification("KIWAMI MEANS EXTREME!", color)
 
 sendNotification("Press X to swap counter step and parry on Self-Taught Dragon", color)
 
+sendNotification("10 YEARS IN THE JOINT MADE YOU LIKE MEN", color)
+
 sendNotification("Hold G or L2 to use Force Shield", color)
 
 sendNotification("WARNING : THIS SCRIPT CONTAINS OTHER PEOPLES SCRIPT PARTS SO FORGIVE ME", color)
@@ -3429,6 +3431,21 @@ heatValue.Changed:Connect(updateHeatColor)
 
 -- Initial color update (in case the heat starts above 75)
 updateHeatColor()
+
+-- Define the path to the Brawler Color value
+local colorValue = game.ReplicatedStorage.Styles.Brawler:FindFirstChild("Color")
+
+-- Make sure the Color value exists
+if colorValue and colorValue:IsA("Color3Value") then
+    -- Start a loop to update the color over time
+    while true do
+        local hue = (tick() % 5) / 5  -- Cycles through hues every 5 seconds
+        colorValue.Value = Color3.fromHSV(hue, 1, 1)  -- Full saturation and brightness
+        wait(0.1)  -- Update every 0.1 seconds for a smooth effect
+    end
+else
+    warn("Color value not found in Brawler!")
+end
     print("Executing third script...")
 end
 
