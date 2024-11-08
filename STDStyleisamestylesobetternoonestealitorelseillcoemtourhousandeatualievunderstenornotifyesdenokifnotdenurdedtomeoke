@@ -2353,61 +2353,6 @@ if dojoStyle then
     end
 end
 
-local UserInputService = game:GetService("UserInputService")
-local replicatedStorage = game:GetService("ReplicatedStorage")
-local stylesFolder = replicatedStorage:WaitForChild("Styles"):WaitForChild("堂島の龍")
-
-local rush5 = stylesFolder:FindFirstChild("Rush5")
-local rush6 = stylesFolder:FindFirstChild("Rush6")
-local rush7 = stylesFolder:FindFirstChild("Rush7")
-local rush8 = stylesFolder:FindFirstChild("Rush8")
-
-local fakeTigerDrop1 = replicatedStorage:WaitForChild("Moves"):FindFirstChild("FakeTigerDrop1")
-local fakeTigerDrop2 = replicatedStorage:WaitForChild("Moves"):FindFirstChild("FakeTigerDrop2")
-local rStrike8 = replicatedStorage:WaitForChild("Moves"):FindFirstChild("RStrike8")
-local rStrike9 = replicatedStorage:WaitForChild("Moves"):FindFirstChild("RStrike9")
-
--- Function to switch to FakeTigerDrop1 and FakeTigerDrop2 when G is held
-local function switchToFakeTigerDrops()
-    if rush5 and rush6 and rush7 and rush8 and fakeTigerDrop1 and fakeTigerDrop2 then
-        rush5.Value = "FakeTigerDrop1"
-        rush7.Value = "FakeTigerDrop1"
-        rush6.Value = "FakeTigerDrop2"
-        rush8.Value = "FakeTigerDrop2"
-        print("Moved to FakeTigerDrop1 and FakeTigerDrop2.")
-    else
-        warn("One or more required moves not found.")
-    end
-end
-
--- Function to revert to RStrike8 and RStrike9 when G is released
-local function revertToRStrikeMoves()
-    if rush5 and rush6 and rush7 and rush8 and rStrike8 and rStrike9 then
-        rush5.Value = "RStrike8"
-        rush7.Value = "RStrike8"
-        rush6.Value = "RStrike9"
-        rush8.Value = "RStrike9"
-        print("Reverted to Rush5, Rush6, Rush7, and Rush8.")
-    else
-        warn("One or more required moves not found.")
-    end
-end
-
--- Detect if G is held or released
-UserInputService.InputBegan:Connect(function(input, gameProcessed)
-    if not gameProcessed then
-        if input.KeyCode == Enum.KeyCode.G then
-            switchToFakeTigerDrops()
-        end
-    end
-end)
-
-UserInputService.InputEnded:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.G then
-        revertToRStrikeMoves()
-    end
-end)
-
 local movesFolder = game.ReplicatedStorage:WaitForChild("Moves")
 local ultimateEssenceFolder = movesFolder:FindFirstChild("H_GUltimateEssence")
 
